@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Examen – Programación IV</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f5f5f0;color:#1a1a1a;min-height:100vh}
+header{background:#1a1a2e;color:#fff;padding:1.25rem 2rem;display:flex;align-items:center;gap:1rem}
+header h1{font-size:1.2rem;font-weight:600}
+header span{font-size:0.8rem;opacity:0.6;margin-left:auto}
+.container{max-width:860px;margin:0 auto;padding:1.5rem}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;background:#fff;border-radius:12px;padding:0.75rem;box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+.nav-btn{padding:7px 16px;border:1.5px solid #e0e0e0;border-radius:20px;background:transparent;cursor:pointer;font-size:13px;color:#555;transition:all 0.15s;font-weight:500}
+.nav-btn:hover{background:#f0f0f0;border-color:#ccc}
+.nav-btn.active{background:#1a1a2e;color:#fff;border-color:#1a1a2e}
+.tab{display:none}
+.tab.active{display:block}
+.card{background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:1.1rem 1.3rem;margin-bottom:1rem;box-shadow:0 1px 2px rgba(0,0,0,0.04)}
+h2{font-size:1.2rem;font-weight:700;margin-bottom:1rem;color:#1a1a2e;padding-bottom:0.5rem;border-bottom:2px solid #e8e8e8}
+h3{font-size:0.95rem;font-weight:600;margin:1rem 0 0.4rem;color:#1a1a2e}
+p{font-size:14px;line-height:1.7;color:#444;margin-bottom:0.6rem}
+pre{background:#1e1e2e;color:#cdd6f4;border-radius:8px;padding:0.9rem 1rem;font-size:12.5px;font-family:'Courier New',monospace;overflow-x:auto;margin:0.5rem 0 0.8rem;line-height:1.65}
+ul,ol{padding-left:1.3rem;font-size:14px;line-height:1.85;color:#444}
+li{margin-bottom:2px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:0.5rem 0 0.8rem}
+th{text-align:left;padding:7px 10px;background:#f0f0f8;color:#333;font-weight:600;border-bottom:2px solid #ddd}
+td{padding:6px 10px;border-bottom:1px solid #eee;color:#444;vertical-align:top}
+code{font-family:'Courier New',monospace;font-size:12.5px;background:#f0f0f8;padding:1px 5px;border-radius:3px;color:#c0392b}
+.score-bar{background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:1rem 1.3rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 1px 2px rgba(0,0,0,0.04)}
+.score-num{font-size:26px;font-weight:700;color:#1a1a2e}
+.score-label{font-size:12px;color:#888;margin-top:2px}
+.score-msg{font-size:13px;color:#555}
+.progress-wrap{flex:1;min-width:120px}
+.progress-bg{height:8px;background:#eee;border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:#1a1a2e;border-radius:4px;transition:width 0.4s}
+.section-title{font-size:1rem;font-weight:700;color:#1a1a2e;margin:1.5rem 0 0.8rem;display:flex;align-items:center;gap:8px}
+.section-divider{border:none;border-top:1.5px solid #e8e8e8;margin:1.5rem 0}
+.q-block{background:#fff;border:1px solid #e8e8e8;border-radius:10px;padding:1rem 1.1rem;margin-bottom:0.8rem;box-shadow:0 1px 2px rgba(0,0,0,0.04);transition:border-color 0.2s}
+.q-block.answered-ok{border-color:#27ae60;background:#f0fdf4}
+.q-block.answered-wrong{border-color:#e74c3c;background:#fff5f5}
+.q-num{font-size:11px;font-weight:700;color:#888;letter-spacing:0.5px;margin-bottom:4px}
+.q-text{font-size:14px;font-weight:600;color:#1a1a2e;margin-bottom:0.6rem;line-height:1.5}
+.q-options label{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;padding:5px 6px;cursor:pointer;color:#444;border-radius:6px;transition:background 0.1s;line-height:1.5}
+.q-options label:hover{background:#f5f5f5}
+.q-options input{margin-top:3px;flex-shrink:0;accent-color:#1a1a2e}
+.q-submit{margin-top:0.65rem;padding:6px 18px;border:1.5px solid #1a1a2e;border-radius:20px;background:transparent;cursor:pointer;font-size:13px;color:#1a1a2e;font-weight:500;transition:all 0.15s}
+.q-submit:hover{background:#1a1a2e;color:#fff}
+.q-submit:disabled{opacity:0.4;cursor:not-allowed}
+.q-result{font-size:13px;margin-top:0.5rem;font-weight:500;padding:0.5rem 0.75rem;border-radius:6px;line-height:1.5}
+.correct-msg{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+.wrong-msg{background:#fff5f5;color:#991b1b;border:1px solid #fecaca}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin-right:6px;font-weight:600}
+.badge-tip{background:#fff3cd;color:#856404;border:1px solid #ffd875}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>📚 Guía de Estudio — Programación IV</h1>
+    <div style="font-size:0.75rem;opacity:0.6;margin-top:2px">JavaScript · DOM · Fetch API · REST · React &nbsp;|&nbsp; UNA – Prof. José Sánchez</div>
+  </div>
+  <span>50 preguntas de práctica</span>
+</header>
+
+<div class="container">
+<div class="nav">
+  <button class="nav-btn active" onclick="showTab('js',this)">JavaScript</button>
+  <button class="nav-btn" onclick="showTab('dom',this)">DOM</button>
+  <button class="nav-btn" onclick="showTab('fetch',this)">Fetch API</button>
+  <button class="nav-btn" onclick="showTab('rest',this)">REST</button>
+  <button class="nav-btn" onclick="showTab('react',this)">React</button>
+  <button class="nav-btn" onclick="showTab('quiz',this)">🎯 Preguntas</button>
+</div>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<div id="tab-js" class="tab active">
+<h2>JavaScript</h2>
+
+<div class="card">
+<h3>Características del lenguaje</h3>
+<ul>
+<li><strong>Tipado dinámico y débil</strong>: los tipos se verifican en tiempo de ejecución y pueden cambiar.</li>
+<li>Paradigma orientado a objetos con <strong>herencia por prototipos</strong> (no de clases reales).</li>
+<li>Sintaxis similar a Java; tiene características de Lisp (funciones de primer orden).</li>
+<li>Estándar mundial: <strong>ECMAScript</strong>.</li>
+<li>Ambientes: <strong>Browser</strong> (accede a <code>document</code>, DOM) y <strong>Node.js</strong> (no tiene <code>document</code>).</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Principales tipos de datos</h3>
+<table>
+<tr><th>Tipo</th><th>Notas clave</th></tr>
+<tr><td>Números</td><td>64 bits, punto flotante. Incluye <code>NaN</code> e <code>Infinity</code>.</td></tr>
+<tr><td>Strings</td><td>Comilla simple o doble. <code>+</code> concatena. Índice empieza en 0. Métodos: <code>indexOf</code>, <code>substring</code>, <code>replace</code>, <code>trim</code>, <code>split</code>.</td></tr>
+<tr><td>Booleanos</td><td><code>true</code> / <code>false</code></td></tr>
+<tr><td>Objetos</td><td>Colecciones de propiedades (datos y métodos). Se crean con literales <code>{}</code>.</td></tr>
+<tr><td>Arreglos</td><td>Colecciones por índice. <code>var a = [5,3,7]</code> o <code>new Array()</code>. Propiedad <code>length</code>.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>Variables y ámbitos</h3>
+<ul>
+<li><code>var</code> dentro de función → <strong>ámbito local</strong> a la función.</li>
+<li><code>var</code> fuera de función → <strong>global</strong> (objeto global / window).</li>
+<li><code>let</code> / <code>const</code> → <strong>ámbito de bloque</strong> (<code>{}</code>).</li>
+<li>Variables no inicializadas = <code>undefined</code> (distinto de <code>null</code>).</li>
+<li>Funciones sin <code>return</code> devuelven <code>undefined</code>, excepto si se llaman con <code>new</code>.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Funciones – múltiples sintaxis</h3>
+<pre>// Declaración clásica
+function suma(x, y) { return x + y; }
+
+// Expresión (asignada a variable)
+var suma = function(x, y) { return x + y; };
+
+// Arrow function
+var suma = (x, y) => x + y;
+
+// Auto-invocada (IIFE)
+((x, y) => { return x + y; })(1, 2);</pre>
+<p>Las funciones son <strong>elementos de primer orden</strong>: pueden asignarse a variables y pasarse como parámetros.</p>
+</div>
+
+<div class="card">
+<h3>Arreglos – métodos importantes</h3>
+<ul>
+<li><code>push(e)</code> – agrega al final; <code>pop()</code> – elimina del final.</li>
+<li><code>shift()</code> – elimina del inicio; <code>unshift(e)</code> – agrega al inicio.</li>
+<li><code>splice(i, c, e)</code> – en posición <code>i</code> elimina <code>c</code> elementos e inserta <code>e</code>.</li>
+<li><code>slice()</code>, <code>concat()</code>, <code>join()</code>, <code>sort()</code>.</li>
+<li><code>forEach()</code>, <code>filter()</code>, <code>find()</code>, <code>findIndex()</code>, <code>map()</code>.</li>
+</ul>
+<p>Recorridos: <code>for</code>, <code>for (i in a)</code>, <code>a.forEach(fn)</code>.</p>
+</div>
+
+<div class="card">
+<h3>Objetos y constructores</h3>
+<pre>// Literal de objeto
+var p = { cedula: '001', nombre: 'Juan' };
+p.edad = 30; // agregar propiedad dinámicamente
+
+// Función constructora
+function Persona(c, n) { this.cedula = c; this.nombre = n; }
+var p = new Persona('001', 'Juan');
+// new: crea objeto vacío, asigna this, ejecuta función, retorna objeto</pre>
+</div>
+
+<div class="card">
+<h3>Herencia por prototipos</h3>
+<ul>
+<li>Cada objeto tiene una referencia <code>__proto__</code> a su prototipo.</li>
+<li>Al buscar una propiedad: si no existe, se navega la cadena de prototipos hasta encontrarla o llegar a un objeto sin prototipo.</li>
+<li>Las funciones tienen la propiedad <code>prototype</code>. Al llamar con <code>new</code>, el objeto creado hereda de ese <code>prototype</code>.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Clases en ES6 (azúcar sintáctico)</h3>
+<pre>class Animal {
+  constructor(nombre) { this.nombre = nombre; }
+  hablar() { return this.nombre + ' hace un sonido'; }
+}
+
+class Perro extends Animal {
+  constructor(nombre) { super(nombre); }
+  hablar() { return super.hablar() + ' (guau)'; }
+}
+let d = new Perro('Rex');
+d.hablar(); // "Rex hace un sonido (guau)"</pre>
+<p style="background:#fff3cd;padding:6px 10px;border-radius:6px;border:1px solid #ffd875;font-size:13px">⚠️ Las clases son <strong>azúcar sintáctico</strong> sobre el patrón de función constructora. JS sigue usando herencia por prototipos internamente.</p>
+</div>
+
+<div class="card">
+<h3>JSON</h3>
+<ul>
+<li>Sublenguaje de JS para representar datos como texto. Soporta objetos, arreglos y primitivos.</li>
+<li><code>JSON.stringify(obj)</code> → serializa objeto a texto JSON.</li>
+<li><code>JSON.parse(texto)</code> → deserializa texto JSON a objeto JS.</li>
+</ul>
+<pre>let p = {cedula:'001', nombre:'Juan', edad:30};
+let texto = JSON.stringify(p);
+// → '{"cedula":"001","nombre":"Juan","edad":30}'
+let obj = JSON.parse(texto); // → objeto JS de vuelta</pre>
+</div>
+
+<div class="card">
+<h3>Operador <code>?.</code> y <code>??</code></h3>
+<ul>
+<li><code>x.y?.z</code>: si <code>x.y</code> existe retorna <code>x.y.z</code>, sino <code>undefined</code> (sin lanzar error).</li>
+<li>Equivale a <code>x.y && x.y.z</code>.</li>
+<li><code>valor ?? 'default'</code>: si <code>valor</code> es <code>null</code> o <code>undefined</code>, usa <code>'default'</code>.</li>
+</ul>
+</div>
+</div>
+
+<!-- ==================== DOM ==================== -->
+<div id="tab-dom" class="tab">
+<h2>DOM – Document Object Model</h2>
+
+<div class="card">
+<h3>¿Qué es el DOM?</h3>
+<ul>
+<li>Especificación del <strong>W3C</strong> para representar documentos HTML/XML como árbol en programas (JS, Java...).</li>
+<li>Cuando el browser carga una página, crea un <strong>árbol de nodos</strong> y un ámbito de ejecución de JS.</li>
+<li>Cada etiqueta HTML → un nodo; sub-etiquetas → nodos hijos.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Jerarquía de interfaces (de más general a más específico)</h3>
+<pre>EventTarget
+  └── Node
+        ├── Text
+        └── Element
+              └── HTMLElement
+                    ├── HTMLInputElement
+                    ├── HTMLFormElement
+                    └── HTMLBodyElement ...
+Document (también hereda de Node → EventTarget)</pre>
+<p style="background:#fff3cd;padding:6px 10px;border-radius:6px;border:1px solid #ffd875;font-size:13px">⚠️ Todos los nodos pueden recibir eventos porque <strong>Node hereda de EventTarget</strong>.</p>
+</div>
+
+<div class="card">
+<h3>El objeto window</h3>
+<ul>
+<li>Es el <strong>ambiente global</strong> de JS en el browser.</li>
+<li>Variables/funciones declaradas en el top-level quedan como propiedades de <code>window</code>.</li>
+<li>Contiene: <code>document</code>, <code>history</code>, <code>location</code>, <code>navigator</code>, <code>JSON</code>, <code>XMLHttpRequest</code>, etc.</li>
+<li><strong>No existe en Node.js</strong>.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Métodos y propiedades esenciales</h3>
+<table>
+<tr><th>Método / Propiedad</th><th>Descripción</th></tr>
+<tr><td><code>document.getElementById(id)</code></td><td>Retorna el nodo con ese id</td></tr>
+<tr><td><code>getElementsByTagName(tag)</code></td><td>Colección de nodos con esa etiqueta</td></tr>
+<tr><td><code>document.getElementsByName(name)</code></td><td>Por atributo name</td></tr>
+<tr><td><code>querySelector(selector)</code></td><td>Primer nodo que coincide con selector CSS</td></tr>
+<tr><td><code>querySelectorAll(selector)</code></td><td>Todos los nodos que coinciden</td></tr>
+<tr><td><code>document.createElement(tag)</code></td><td>Crea un nuevo nodo elemento</td></tr>
+<tr><td><code>Node.appendChild(node)</code></td><td>Agrega un hijo al nodo</td></tr>
+<tr><td><code>element.innerHTML</code></td><td>Lee/escribe el HTML interior del nodo</td></tr>
+<tr><td><code>element.className</code></td><td>Lee/asigna la clase CSS (string completo)</td></tr>
+<tr><td><code>element.classList</code></td><td>API: <code>.add()</code>, <code>.remove()</code>, <code>.toggle()</code></td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>Eventos</h3>
+<ul>
+<li><strong>EventTarget</strong>: interfaz que implementan los nodos que reciben eventos.</li>
+<li><strong>EventListener</strong>: función ejecutada en respuesta a un evento.</li>
+<li><strong>Event</strong>: objeto que representa el evento (contiene <code>target</code>, <code>type</code>, etc.).</li>
+</ul>
+<pre>// Esperar que el DOM cargue antes de ejecutar JS
+document.addEventListener("DOMContentLoaded", ev => loaded());
+
+// Listener en un botón por id
+document.getElementById("btn").addEventListener("click", handleClick);
+
+// Acceder al elemento que disparó el evento
+function handleClick(ev) {
+  console.log(ev.target);
+}</pre>
+</div>
+
+<div class="card">
+<h3>Creación dinámica de nodos</h3>
+<pre>// Con createElement y appendChild
+var ul = document.createElement("ul");
+var li = document.createElement("li");
+li.appendChild(document.createTextNode("Item 1"));
+ul.appendChild(li);
+document.body.appendChild(ul);
+
+// Con innerHTML (más directo pero menos seguro con datos externos)
+document.getElementById("contenedor").innerHTML =
+  "&lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;/ul&gt;";</pre>
+</div>
+
+<div class="card">
+<h3>Patrón del proyecto PersonasFetchCrud</h3>
+<pre>document.addEventListener("DOMContentLoaded", ev => loaded());
+
+function loaded() {
+  document.getElementById("registrar").addEventListener("click", handleSave);
+  document.getElementById("limpiar").addEventListener("click", handleClear);
+  handleList();
+}
+
+// replaceChildren reemplaza todos los hijos existentes
+function renderList(personas) {
+  var listado = document.getElementById("listado");
+  listado.replaceChildren(...personas.map(p => renderItem(p)));
+}
+
+// Validación con classList
+cedula.classList.remove("invalid");
+if (cedula.value.length == 0) {
+  cedula.classList.add("invalid");
+  error = true;
+}</pre>
+</div>
+</div>
+
+<!-- ==================== FETCH ==================== -->
+<div id="tab-fetch" class="tab">
+<h2>Fetch API</h2>
+
+<div class="card">
+<h3>¿Por qué Fetch?</h3>
+<ul>
+<li>El antiguo <code>XMLHttpRequest (XHR)</code>: complejo, callbacks, inconsistencias entre browsers.</li>
+<li><strong>Fetch API</strong>: forma moderna de peticiones HTTP asíncronas en JS.</li>
+<li>Usa <strong>Promises</strong> en lugar de callbacks.</li>
+<li>Soportado por todos los browsers desde 2016/2017 (excepto IE).</li>
+<li>Por seguridad, solo carga datos del mismo servidor salvo que se habilite <strong>CORS</strong>.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Uso básico</h3>
+<pre>// Con .then() encadenado
+fetch('https://api.example.com/datos.json')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
+
+// Con async/await (más legible)
+async function cargarDatos() {
+  const response = await fetch('https://api.example.com/datos.json');
+  const data = await response.json();
+  console.log(data);
+}
+cargarDatos();</pre>
+</div>
+
+<div class="card">
+<h3>Objeto Response – propiedades clave</h3>
+<table>
+<tr><th>Propiedad</th><th>Descripción</th></tr>
+<tr><td><code>response.ok</code></td><td>Boolean: <strong>true</strong> si HTTP 200-299</td></tr>
+<tr><td><code>response.status</code></td><td>Código HTTP (200, 404, 500...)</td></tr>
+<tr><td><code>response.statusText</code></td><td>"OK", "Not Found", etc.</td></tr>
+<tr><td><code>response.url</code></td><td>URL final (tras redirects)</td></tr>
+<tr><td><code>response.type</code></td><td>"basic" o "cors"</td></tr>
+</table>
+<h3>Métodos para leer el body (solo se puede leer UNA vez)</h3>
+<ul>
+<li><code>response.json()</code> → Promise → objeto JS</li>
+<li><code>response.text()</code> → Promise → string</li>
+<li><code>response.formData()</code> → Promise → FormData</li>
+<li><code>response.blob()</code> → Promise → datos binarios con tipo</li>
+<li><code>response.arrayBuffer()</code> → Promise → representación binaria</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Manejo de errores</h3>
+<p style="background:#fff3cd;padding:6px 10px;border-radius:6px;border:1px solid #ffd875;font-size:13px">⚠️ Fetch <strong>NO rechaza la Promise</strong> por errores HTTP (404, 500). Solo rechaza por errores de red. Siempre verificar <code>response.ok</code>.</p>
+<pre>fetch(url)
+  .then(response => {
+    if (!response.ok) {
+      throw Error(response.statusText); // manejar 4xx / 5xx
+    }
+    return response.json();
+  })
+  .then(data => console.log(data))
+  .catch(err => console.log(err));</pre>
+</div>
+
+<div class="card">
+<h3>Opciones del fetch (objeto init)</h3>
+<pre>fetch(url, {
+  method: 'POST',              // GET, POST, PUT, DELETE
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(objeto), // serializar a JSON para enviar
+  mode: 'cors',                // cors | no-cors | same-origin
+  credentials: 'include'       // omit | same-origin | include (para cookies)
+})</pre>
+</div>
+
+<div class="card">
+<h3>CRUD con Fetch (patrón del proyecto)</h3>
+<pre>// GET – listar todos
+const req = new Request(backend + '/personas', {method:'GET', headers:{}});
+const response = await fetch(req);
+if (!response.ok) { alert("Error: " + response.status); return; }
+const personas = await response.json();
+
+// POST – crear nuevo
+let req = new Request(backend + '/personas', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify(persona)
+});
+const response = await fetch(req);
+
+// GET por ID – obtener uno para editar
+const req = new Request(backend + '/personas/' + persona._id, {method:'GET'});
+const response = await fetch(req);</pre>
+</div>
+
+<div class="card">
+<h3>Fetches en paralelo con Promise.all()</h3>
+<pre>const urls = [url1, url2, url3];
+const promises = urls.map(url => fetch(url).then(r => r.json()));
+
+Promise.all(promises)
+  .then(results => results.forEach(data => console.log(data)))
+  .catch(e => console.error(e));</pre>
+</div>
+
+<div class="card">
+<h3>Cancelar petición con AbortController</h3>
+<pre>const controller = new AbortController();
+
+fetch(url, { signal: controller.signal })
+  .then(response => response.json())
+  .catch(err => console.log(err.message));
+
+// Para cancelar en cualquier momento:
+controller.abort();</pre>
+</div>
+
+<div class="card">
+<h3>Fetch vs Axios</h3>
+<table>
+<tr><th>Característica</th><th>Fetch</th><th>Axios</th></tr>
+<tr><td>Cancelar petición</td><td>AbortController (complejo)</td><td>Más simple</td></tr>
+<tr><td>Timeout</td><td>setTimeout + AbortController</td><td>Nativo</td></tr>
+<tr><td>JSON automático</td><td>Manual (<code>.json()</code>)</td><td>Automático</td></tr>
+<tr><td>Node.js</td><td>No incluido por defecto</td><td>Sí</td></tr>
+<tr><td>Errores HTTP</td><td>No rechaza la Promise</td><td>Rechaza en 4xx/5xx</td></tr>
+</table>
+</div>
+</div>
+
+<!-- ==================== REST ==================== -->
+<div id="tab-rest" class="tab">
+<h2>REST y RESTful Services</h2>
+
+<div class="card">
+<h3>¿Qué es REST?</h3>
+<p><strong>REST: REpresentational State Transfer</strong> – Transferencia de una representación del estado de un recurso.</p>
+<ul>
+<li><strong>Recurso</strong>: objeto (OOP), registro de DB, imagen, etc.</li>
+<li><strong>Representación</strong>: JSON, XML, etc.</li>
+</ul>
+<pre>// Objeto Persona representado en JSON:
+{ "Id": "001", "Nombre": "Juan" }
+
+// Misma representación en XML:
+&lt;Persona&gt;&lt;Id&gt;001&lt;/Id&gt;&lt;Nombre&gt;Juan&lt;/Nombre&gt;&lt;/Persona&gt;</pre>
+</div>
+
+<div class="card">
+<h3>Métodos HTTP y operaciones CRUD</h3>
+<table>
+<tr><th>Método HTTP</th><th>Operación</th><th>Ejemplo URL</th></tr>
+<tr><td><code>GET</code></td><td>Leer / listar</td><td><code>/personas</code> o <code>/personas/1</code></td></tr>
+<tr><td><code>POST</code></td><td>Crear</td><td><code>/personas</code></td></tr>
+<tr><td><code>PUT</code></td><td>Actualizar (reemplaza completo)</td><td><code>/personas/1</code></td></tr>
+<tr><td><code>DELETE</code></td><td>Eliminar</td><td><code>/personas/1</code></td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>Arquitectura de una app web moderna</h3>
+<ul>
+<li><strong>Views/Presentation</strong>: páginas HTML recibidas por el browser.</li>
+<li><strong>API RESTful</strong>: retorna datos JSON consumidos por el JS del cliente.</li>
+</ul>
+<p>Flujo: Browser → petición HTTP → Servidor Spring/Tomcat → procesa → retorna JSON → JS actualiza el DOM.</p>
+</div>
+
+<div class="card">
+<h3>Implementación con Spring (servidor)</h3>
+<p>El procesador RESTful de Spring debe:</p>
+<ol>
+<li>Identificar servicio y método según el <strong>URI</strong> y el <strong>método HTTP</strong>.</li>
+<li>Convertir el body de la petición de JSON a objeto Java (según <code>Content-Type</code>).</li>
+<li>Invocar el método del API con ese objeto.</li>
+<li>Recibir el resultado Java y convertirlo a JSON (según <code>Accept</code>).</li>
+<li>Devolver la respuesta con el <strong>HTTP status</strong> correspondiente.</li>
+<li>Si hay excepción → mapearla a un HTTP status de error (ej. 404) y devolver ese status.</li>
+</ol>
+</div>
+
+<div class="card">
+<h3>Códigos de respuesta HTTP</h3>
+<table>
+<tr><th>Código</th><th>Significado</th><th>Cuándo usarlo</th></tr>
+<tr><td>200 OK</td><td>Éxito</td><td>GET, PUT exitosos</td></tr>
+<tr><td>201 Created</td><td>Recurso creado</td><td>POST exitoso</td></tr>
+<tr><td>204 No Content</td><td>Éxito sin body</td><td>DELETE exitoso</td></tr>
+<tr><td>400 Bad Request</td><td>Petición malformada</td><td>Datos inválidos</td></tr>
+<tr><td>404 Not Found</td><td>No encontrado</td><td>Recurso inexistente</td></tr>
+<tr><td>500 Internal Server Error</td><td>Error en servidor</td><td>Excepción no manejada</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>Headers HTTP importantes</h3>
+<ul>
+<li><code>Content-Type: application/json</code> → el body que ENVÍO es JSON.</li>
+<li><code>Accept: application/json</code> → quiero RECIBIR JSON en la respuesta.</li>
+<li><strong>CORS</strong> (Cross-Origin Resource Sharing): mecanismo para permitir peticiones desde un origen diferente al del servidor.</li>
+</ul>
+</div>
+</div>
+
+<!-- ==================== REACT ==================== -->
+<div id="tab-react" class="tab">
+<h2>React</h2>
+
+<div class="card">
+<h3>¿Por qué React?</h3>
+<ul>
+<li>Creado por Facebook. Licencia MIT. Usado en +380,000 sitios.</li>
+<li>Problemas del DOM vanilla/jQuery: sin estructura, difícil para SPAs, eventos complejos.</li>
+<li>React define todo como <strong>componentes</strong>, maneja actualizaciones automáticamente.</li>
+<li>Agrega <strong>JSX</strong>: sintaxis HTML dentro de JS. JSX compila a <code>React.createElement()</code>.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>JSX y tipos de componentes</h3>
+<pre>// Componente de clase (puede tener state)
+class MiComponente extends React.Component {
+  render() { return &lt;div&gt;Hola Mundo&lt;/div&gt;; }
+}
+
+// Componente funcional (moderno, con Hooks)
+function MiComponente() {
+  return &lt;div&gt;Hola Mundo&lt;/div&gt;;
+}
+
+// Arrow function (equivalente)
+const MiComponente = () => &lt;div&gt;Hola Mundo&lt;/div&gt;;
+
+// JSX compila a:
+React.createElement('div', null, 'Hola Mundo');</pre>
+</div>
+
+<div class="card">
+<h3>State y Props</h3>
+<table>
+<tr><th></th><th>State</th><th>Props</th></tr>
+<tr><td>Acceso</td><td>Lectura y escritura</td><td>Solo lectura</td></tr>
+<tr><td>Pertenece a</td><td>El componente mismo</td><td>Viene del padre</td></tr>
+<tr><td>Actualizar</td><td><code>setState()</code> o setter de <code>useState</code></td><td>No se modifica desde el hijo</td></tr>
+<tr><td>Efecto</td><td>Re-renderiza el componente</td><td>Refleja el state del padre</td></tr>
+</table>
+<pre>// Clase
+this.setState({ contador: this.state.contador + 1 });
+
+// Hook funcional
+const [contador, setContador] = useState(0);
+setContador(contador + 1);</pre>
+</div>
+
+<div class="card">
+<h3>Eventos en React</h3>
+<p>Nombres en <strong>camelCase</strong>. Se asignan como propiedades JSX (no strings).</p>
+<pre>&lt;button onClick={this.handleClick}&gt;Clic&lt;/button&gt;
+&lt;button onClick={() => this.handleClick(param)}&gt;Clic con param&lt;/button&gt;
+&lt;input onChange={(e) => setValor(e.target.value)} /&gt;
+// Otros: onSubmit, onDoubleClick, onContextMenu, onChange, onKeyDown...</pre>
+</div>
+
+<div class="card">
+<h3>Formularios: Controlled vs Uncontrolled</h3>
+<p><strong>Componente Controlado:</strong> React gestiona el valor via state. React es la fuente de verdad.</p>
+<pre>const [nombre, setNombre] = useState('');
+&lt;input value={nombre} onChange={(e) => setNombre(e.target.value)} /&gt;</pre>
+<ul>
+<li>✅ Validación en tiempo real, control total, debug fácil, formularios complejos.</li>
+<li>❌ Más código, más re-renders por cada tecla.</li>
+</ul>
+<p><strong>Componente No Controlado:</strong> el DOM gestiona el valor. React lo lee con <code>ref</code> cuando lo necesita.</p>
+<pre>const inputRef = useRef(null);
+&lt;input ref={inputRef} /&gt;
+// Al hacer submit:
+const valor = inputRef.current.value;</pre>
+<ul>
+<li>✅ Menos código, mejor rendimiento, familiar para devs de HTML.</li>
+<li>❌ Sin acceso en tiempo real, validación más difícil.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Context API – evitar prop drilling</h3>
+<p><strong>Prop drilling:</strong> pasar props por componentes intermedios que no los necesitan.</p>
+<pre>// 1. Crear contexto
+import { createContext, useState, useContext } from 'react';
+const CounterContext = createContext({ count: 0, setCount: () => {} });
+
+// 2. Crear Provider
+const CounterProvider = ({ children }) => {
+  const [count, setCount] = useState(0);
+  return (
+    &lt;CounterContext.Provider value={{ count, setCount }}&gt;
+      {children}
+    &lt;/CounterContext.Provider&gt;
+  );
+};
+
+// 3. Consumir con useContext (en cualquier componente descendiente)
+const { count, setCount } = useContext(CounterContext);
+
+// 4. Envolver la app con el Provider
+&lt;CounterProvider&gt;
+  &lt;App /&gt;
+&lt;/CounterProvider&gt;</pre>
+<p>Usos comunes: autenticación, tema (dark/light), carrito, idioma.</p>
+</div>
+
+<div class="card">
+<h3>React Router v7 (modo declarativo)</h3>
+<pre>import { BrowserRouter, Routes, Route } from 'react-router';
+
+function App() {
+  return (
+    &lt;BrowserRouter&gt;
+      &lt;Routes&gt;
+        &lt;Route path="/" element={&lt;Home /&gt;} /&gt;
+        &lt;Route path="/about" element={&lt;About /&gt;} /&gt;
+        &lt;Route path="*" element={&lt;NoMatch /&gt;} /&gt;  {/* 404 */}
+      &lt;/Routes&gt;
+    &lt;/BrowserRouter&gt;
+  );
+}</pre>
+<table>
+<tr><th>Componente</th><th>Rol</th></tr>
+<tr><td><code>&lt;BrowserRouter&gt;</code></td><td>Envuelve toda la app. Usa HTML5 History API.</td></tr>
+<tr><td><code>&lt;Routes&gt;</code></td><td>Reemplaza <code>&lt;Switch&gt;</code> de v5. Soporta rutas relativas y anidadas.</td></tr>
+<tr><td><code>&lt;Route path element&gt;</code></td><td>Define una ruta y el componente a renderizar.</td></tr>
+</table>
+<p>Tres modos: <strong>declarativo</strong> (básico), data (fetching integrado), framework (como Next.js). Instalación: <code>npm install react-router</code></p>
+</div>
+</div>
+
+<!-- ==================== QUIZ ==================== -->
+<div id="tab-quiz" class="tab">
+<h2>🎯 Preguntas de práctica</h2>
+
+<div class="score-bar" id="scorebar">
+  <div>
+    <div class="score-num" id="score-num">0 / 0</div>
+    <div class="score-label">respuestas correctas</div>
+  </div>
+  <div class="progress-wrap">
+    <div style="font-size:12px;color:#888;margin-bottom:4px" id="score-pct">0%</div>
+    <div class="progress-bg"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+  <div class="score-msg" id="score-msg">Responde para ver tu puntaje</div>
+</div>
+
+<div class="section-title">🟦 JavaScript</div>
+
+<div class="q-block" id="q1">
+<div class="q-num">PREGUNTA 1 DE 50</div>
+<div class="q-text">¿Cuál de las siguientes afirmaciones describe correctamente el sistema de tipado de JavaScript?</div>
+<div class="q-options">
+<label><input type="radio" name="q1" value="a"> Estático y fuerte (verificación en compilación)</label>
+<label><input type="radio" name="q1" value="b"> Dinámico y débil (verificación en ejecución, los tipos pueden cambiar)</label>
+<label><input type="radio" name="q1" value="c"> Estático y débil</label>
+<label><input type="radio" name="q1" value="d"> Dinámico y fuerte</label>
+</div>
+<button class="q-submit" onclick="check('q1','b','El tipado es dinámico porque se verifica en tiempo de ejecución, y débil porque el tipo de una variable puede cambiar durante la ejecución del programa.')">Verificar</button>
+<div class="q-result" id="q1-r"></div>
+</div>
+
+<div class="q-block" id="q2">
+<div class="q-num">PREGUNTA 2 DE 50</div>
+<div class="q-text">¿Cuál es la diferencia entre una variable declarada con <code>var</code> dentro de una función y una con <code>let</code>?</div>
+<div class="q-options">
+<label><input type="radio" name="q2" value="a"> No hay diferencia, ambas tienen ámbito de función</label>
+<label><input type="radio" name="q2" value="b"> <code>var</code> tiene ámbito de función; <code>let</code> tiene ámbito de bloque <code>{}</code></label>
+<label><input type="radio" name="q2" value="c"> <code>let</code> tiene ámbito de función; <code>var</code> tiene ámbito de bloque</label>
+<label><input type="radio" name="q2" value="d"> Ambas tienen ámbito global</label>
+</div>
+<button class="q-submit" onclick="check('q2','b','var tiene ámbito de función (o global si está fuera de función). let y const tienen ámbito de bloque {}, lo que significa que no son accesibles fuera de ese bloque.')">Verificar</button>
+<div class="q-result" id="q2-r"></div>
+</div>
+
+<div class="q-block" id="q3">
+<div class="q-num">PREGUNTA 3 DE 50</div>
+<div class="q-text">¿Qué hace el método <code>splice(2, 1, 'X')</code> en un arreglo?</div>
+<div class="q-options">
+<label><input type="radio" name="q3" value="a"> Inserta 'X' al final del arreglo</label>
+<label><input type="radio" name="q3" value="b"> Elimina 2 elementos a partir del índice 1</label>
+<label><input type="radio" name="q3" value="c"> En la posición 2, elimina 1 elemento e inserta 'X' en ese lugar</label>
+<label><input type="radio" name="q3" value="d"> Retorna un nuevo arreglo con 'X' en posición 2</label>
+</div>
+<button class="q-submit" onclick="check('q3','c','splice(i, c, e): en posición i elimina c elementos y agrega e en ese lugar. Modifica el arreglo original y retorna los elementos eliminados.')">Verificar</button>
+<div class="q-result" id="q3-r"></div>
+</div>
+
+<div class="q-block" id="q4">
+<div class="q-num">PREGUNTA 4 DE 50</div>
+<div class="q-text">¿Cuál de estas NO es una sintaxis válida para definir una función en JavaScript?</div>
+<div class="q-options">
+<label><input type="radio" name="q4" value="a"> <code>function f(x) { return x; }</code></label>
+<label><input type="radio" name="q4" value="b"> <code>var f = function(x) { return x; };</code></label>
+<label><input type="radio" name="q4" value="c"> <code>f = (x) => { return x; }</code></label>
+<label><input type="radio" name="q4" value="d"> <code>def f(x): return x</code></label>
+</div>
+<button class="q-submit" onclick="check('q4','d','def es sintaxis de Python, no de JavaScript. JS admite: declaración clásica, expresión (asignada a variable) y arrow function. Las tres primeras opciones son todas válidas en JS.')">Verificar</button>
+<div class="q-result" id="q4-r"></div>
+</div>
+
+<div class="q-block" id="q5">
+<div class="q-num">PREGUNTA 5 DE 50</div>
+<div class="q-text">En herencia por prototipos, ¿qué ocurre al acceder a una propiedad que NO existe en el objeto?</div>
+<div class="q-options">
+<label><input type="radio" name="q5" value="a"> Se lanza un error inmediatamente</label>
+<label><input type="radio" name="q5" value="b"> Se retorna <code>null</code></label>
+<label><input type="radio" name="q5" value="c"> Se busca en el <code>__proto__</code> y así sucesivamente por la cadena de prototipos</label>
+<label><input type="radio" name="q5" value="d"> Se crea automáticamente con valor <code>undefined</code></label>
+</div>
+<button class="q-submit" onclick="check('q5','c','La búsqueda navega la cadena de prototipos: objeto → __proto__ → __proto__.__proto__... Si no la encuentra en ningún nivel, retorna undefined.')">Verificar</button>
+<div class="q-result" id="q5-r"></div>
+</div>
+
+<div class="q-block" id="q6">
+<div class="q-num">PREGUNTA 6 DE 50</div>
+<div class="q-text">¿Qué hace <code>JSON.stringify({ a: 1, b: [2, 3] })</code>?</div>
+<div class="q-options">
+<label><input type="radio" name="q6" value="a"> Convierte el objeto a un nuevo objeto JS</label>
+<label><input type="radio" name="q6" value="b"> Serializa el objeto a la cadena de texto: <code>'{"a":1,"b":[2,3]}'</code></label>
+<label><input type="radio" name="q6" value="c"> Imprime el objeto en consola con formato JSON</label>
+<label><input type="radio" name="q6" value="d"> Valida si el objeto es JSON válido</label>
+</div>
+<button class="q-submit" onclick="check('q6','b','JSON.stringify serializa (convierte a texto) un objeto JS. JSON.parse hace lo contrario: texto → objeto JS.')">Verificar</button>
+<div class="q-result" id="q6-r"></div>
+</div>
+
+<div class="q-block" id="q7">
+<div class="q-num">PREGUNTA 7 DE 50</div>
+<div class="q-text">Las clases en JavaScript (ES6) son:</div>
+<div class="q-options">
+<label><input type="radio" name="q7" value="a"> Un mecanismo de herencia completamente diferente a prototipos</label>
+<label><input type="radio" name="q7" value="b"> Azúcar sintáctico sobre el patrón de función constructora con prototipos</label>
+<label><input type="radio" name="q7" value="c"> Equivalentes a clases de Java, con herencia real de clases</label>
+<label><input type="radio" name="q7" value="d"> Solo disponibles en Node.js, no en el browser</label>
+</div>
+<button class="q-submit" onclick="check('q7','b','El material del Prof. Sánchez dice explícitamente: \"las clases son azúcar sintáctico para el patrón de función constructora\". Internamente JS sigue usando herencia por prototipos.')">Verificar</button>
+<div class="q-result" id="q7-r"></div>
+</div>
+
+<div class="q-block" id="q8">
+<div class="q-num">PREGUNTA 8 DE 50</div>
+<div class="q-text">¿Cuál es el valor de una variable declarada con <code>var</code> pero no inicializada?</div>
+<div class="q-options">
+<label><input type="radio" name="q8" value="a"> <code>null</code></label>
+<label><input type="radio" name="q8" value="b"> <code>0</code></label>
+<label><input type="radio" name="q8" value="c"> <code>undefined</code></label>
+<label><input type="radio" name="q8" value="d"> Se lanza un error de referencia</label>
+</div>
+<button class="q-submit" onclick="check('q8','c','Las variables no inicializadas tienen el valor undefined. Importante: undefined ≠ null en JS. Son valores distintos.')">Verificar</button>
+<div class="q-result" id="q8-r"></div>
+</div>
+
+<div class="q-block" id="q9">
+<div class="q-num">PREGUNTA 9 DE 50</div>
+<div class="q-text">Dado <code>let x = { a: { b: 5 } };</code>, ¿qué retorna <code>x.a?.c ?? 'default'</code>?</div>
+<div class="q-options">
+<label><input type="radio" name="q9" value="a"> Error de referencia porque <code>c</code> no existe</label>
+<label><input type="radio" name="q9" value="b"> <code>undefined</code></label>
+<label><input type="radio" name="q9" value="c"> <code>'default'</code></label>
+<label><input type="radio" name="q9" value="d"> <code>null</code></label>
+</div>
+<button class="q-submit" onclick="check('q9','c','x.a existe, pero x.a.c no existe → undefined. Luego undefined ?? \'default\' → \'default\'. El operador ?? retorna el lado derecho cuando el izquierdo es null o undefined.')">Verificar</button>
+<div class="q-result" id="q9-r"></div>
+</div>
+
+<div class="q-block" id="q10">
+<div class="q-num">PREGUNTA 10 DE 50</div>
+<div class="q-text">¿Cuál es la diferencia entre Browser y Node.js como ambientes de ejecución de JS?</div>
+<div class="q-options">
+<label><input type="radio" name="q10" value="a"> Node.js es más rápido, pero no soporta async/await</label>
+<label><input type="radio" name="q10" value="b"> El browser tiene acceso al objeto <code>document</code> y el DOM; Node.js no</label>
+<label><input type="radio" name="q10" value="c"> Node.js tiene acceso al DOM; el browser no</label>
+<label><input type="radio" name="q10" value="d"> No hay diferencia, ambos ejecutan JS igual</label>
+</div>
+<button class="q-submit" onclick="check('q10','b','Los scripts en el browser tienen acceso al objeto document, window, DOM, etc. Esos elementos no están disponibles en Node.js, que es un ambiente del lado del servidor.')">Verificar</button>
+<div class="q-result" id="q10-r"></div>
+</div>
+
+<hr class="section-divider">
+<div class="section-title">🟩 DOM</div>
+
+<div class="q-block" id="q11">
+<div class="q-num">PREGUNTA 11 DE 50</div>
+<div class="q-text">El DOM es una especificación de:</div>
+<div class="q-options">
+<label><input type="radio" name="q11" value="a"> Mozilla Foundation para Firefox</label>
+<label><input type="radio" name="q11" value="b"> W3C para representar documentos HTML/XML como árbol en programas</label>
+<label><input type="radio" name="q11" value="c"> Google para el motor V8 de Node.js</label>
+<label><input type="radio" name="q11" value="d"> ECMA International para el estándar de JavaScript</label>
+</div>
+<button class="q-submit" onclick="check('q11','b','El DOM es una especificación del W3C (World Wide Web Consortium). Define cómo representar documentos HTML o XML como árbol en lenguajes como JS o Java.')">Verificar</button>
+<div class="q-result" id="q11-r"></div>
+</div>
+
+<div class="q-block" id="q12">
+<div class="q-num">PREGUNTA 12 DE 50</div>
+<div class="q-text">¿Cuál es el orden correcto en la cadena de herencia del DOM?</div>
+<div class="q-options">
+<label><input type="radio" name="q12" value="a"> Node → EventTarget → Element → HTMLInputElement</label>
+<label><input type="radio" name="q12" value="b"> EventTarget → Node → Element → HTMLInputElement</label>
+<label><input type="radio" name="q12" value="c"> HTMLInputElement → Element → Node → EventTarget</label>
+<label><input type="radio" name="q12" value="d"> Element → Node → HTMLInputElement → EventTarget</label>
+</div>
+<button class="q-submit" onclick="check('q12','b','La cadena va de más general a más específico: EventTarget (base) → Node → Element → HTMLElement → HTMLInputElement. Node hereda de EventTarget, por eso todos los nodos reciben eventos.')">Verificar</button>
+<div class="q-result" id="q12-r"></div>
+</div>
+
+<div class="q-block" id="q13">
+<div class="q-num">PREGUNTA 13 DE 50</div>
+<div class="q-text">¿Cuál método devuelve el <strong>primer</strong> elemento que coincide con un selector CSS?</div>
+<div class="q-options">
+<label><input type="radio" name="q13" value="a"> <code>document.getElementsByClassName()</code></label>
+<label><input type="radio" name="q13" value="b"> <code>document.querySelectorAll()</code></label>
+<label><input type="radio" name="q13" value="c"> <code>document.querySelector()</code></label>
+<label><input type="radio" name="q13" value="d"> <code>document.getElementById()</code></label>
+</div>
+<button class="q-submit" onclick="check('q13','c','querySelector() retorna el primer elemento que coincide con el selector CSS dado. querySelectorAll() retorna todos. getElementById() busca solo por id.')">Verificar</button>
+<div class="q-result" id="q13-r"></div>
+</div>
+
+<div class="q-block" id="q14">
+<div class="q-num">PREGUNTA 14 DE 50</div>
+<div class="q-text">¿Qué hace <code>element.classList.add('invalido')</code>?</div>
+<div class="q-options">
+<label><input type="radio" name="q14" value="a"> Reemplaza todas las clases del elemento con 'invalido'</label>
+<label><input type="radio" name="q14" value="b"> Agrega la clase CSS 'invalido' al elemento sin eliminar las clases existentes</label>
+<label><input type="radio" name="q14" value="c"> Establece el atributo <code>id</code> del elemento</label>
+<label><input type="radio" name="q14" value="d"> Crea un nuevo elemento con clase 'invalido'</label>
+</div>
+<button class="q-submit" onclick="check('q14','b','classList.add() agrega una clase sin afectar las existentes. classList.remove() la elimina. classList.toggle() la alterna. Usar className = \'invalido\' SÍ reemplaza todo.')">Verificar</button>
+<div class="q-result" id="q14-r"></div>
+</div>
+
+<div class="q-block" id="q15">
+<div class="q-num">PREGUNTA 15 DE 50</div>
+<div class="q-text">Para crear dinámicamente <code>&lt;li&gt;Texto&lt;/li&gt;</code> y agregarla a un <code>&lt;ul&gt;</code>, el orden correcto es:</div>
+<div class="q-options">
+<label><input type="radio" name="q15" value="a"> createElement(li) → createTextNode → appendChild(texto→li) → appendChild(li→ul)</label>
+<label><input type="radio" name="q15" value="b"> appendChild → createElement → createTextNode</label>
+<label><input type="radio" name="q15" value="c"> querySelector → innerHTML → appendChild</label>
+<label><input type="radio" name="q15" value="d"> createTextNode → createElement → appendChild(li→ul)</label>
+</div>
+<button class="q-submit" onclick="check('q15','a','Primero crear el elemento li, luego el nodo de texto, agregar el texto al li (hijo), y finalmente agregar el li al ul. No se puede agregar al padre antes de tener el elemento listo.')">Verificar</button>
+<div class="q-result" id="q15-r"></div>
+</div>
+
+<div class="q-block" id="q16">
+<div class="q-num">PREGUNTA 16 DE 50</div>
+<div class="q-text">¿Por qué se usa <code>document.addEventListener("DOMContentLoaded", ...)</code> en los proyectos del curso?</div>
+<div class="q-options">
+<label><input type="radio" name="q16" value="a"> Para ejecutar código solo cuando el usuario hace clic en el documento</label>
+<label><input type="radio" name="q16" value="b"> Para ejecutar código después de que el DOM está completamente construido y listo</label>
+<label><input type="radio" name="q16" value="c"> Para cargar CSS dinámicamente</label>
+<label><input type="radio" name="q16" value="d"> Para prevenir que el browser renderice la página antes de que cargue el JS</label>
+</div>
+<button class="q-submit" onclick="check('q16','b','DOMContentLoaded se dispara cuando el HTML ha sido completamente parseado y el árbol DOM está construido. Sin esto, el JS podría intentar acceder a elementos que aún no existen en el DOM.')">Verificar</button>
+<div class="q-result" id="q16-r"></div>
+</div>
+
+<div class="q-block" id="q17">
+<div class="q-num">PREGUNTA 17 DE 50</div>
+<div class="q-text">El objeto <code>window</code> en el browser sirve para:</div>
+<div class="q-options">
+<label><input type="radio" name="q17" value="a"> Solo representar la ventana visual del browser</label>
+<label><input type="radio" name="q17" value="b"> Ser el ambiente global de JS (variables top-level son sus propiedades) y contener objetos útiles como document, location, etc.</label>
+<label><input type="radio" name="q17" value="c"> Manejar únicamente el historial de navegación</label>
+<label><input type="radio" name="q17" value="d"> Ejecutar Node.js dentro del browser</label>
+</div>
+<button class="q-submit" onclick="check('q17','b','window cumple dos propósitos: es el objeto global (variables declaradas en top-level son propiedades de window) y provee objetos útiles: document, history, location, navigator, JSON, etc.')">Verificar</button>
+<div class="q-result" id="q17-r"></div>
+</div>
+
+<div class="q-block" id="q18">
+<div class="q-num">PREGUNTA 18 DE 50</div>
+<div class="q-text">En el proyecto Personas, <code>listado.replaceChildren(...personas.map(p => renderItem(p)))</code>:</div>
+<div class="q-options">
+<label><input type="radio" name="q18" value="a"> Agrega nuevos elementos sin eliminar los anteriores</label>
+<label><input type="radio" name="q18" value="b"> Reemplaza todos los hijos del elemento con los nuevos nodos generados</label>
+<label><input type="radio" name="q18" value="c"> Actualiza solo el primer elemento de la lista</label>
+<label><input type="radio" name="q18" value="d"> Elimina el elemento listado del DOM completamente</label>
+</div>
+<button class="q-submit" onclick="check('q18','b','replaceChildren() elimina todos los hijos existentes y los reemplaza con los nuevos. El spread operator (...) desempaca el arreglo de nodos creados por .map(). Equivale a limpiar y redibujar la lista completa.')">Verificar</button>
+<div class="q-result" id="q18-r"></div>
+</div>
+
+<div class="q-block" id="q19">
+<div class="q-num">PREGUNTA 19 DE 50</div>
+<div class="q-text">¿Qué diferencia hay entre <code>querySelector('#myId')</code> y <code>getElementById('myId')</code>?</div>
+<div class="q-options">
+<label><input type="radio" name="q19" value="a"> No hay diferencia funcional alguna</label>
+<label><input type="radio" name="q19" value="b"> querySelector acepta cualquier selector CSS; getElementById solo busca por id y es más específico</label>
+<label><input type="radio" name="q19" value="c"> getElementById retorna una colección; querySelector retorna un solo elemento</label>
+<label><input type="radio" name="q19" value="d"> querySelector solo funciona en elementos, no en document</label>
+</div>
+<button class="q-submit" onclick="check('q19','b','querySelector acepta cualquier selector CSS válido (#id, .clase, etiqueta, combinaciones). getElementById solo busca por id. Ambos retornan el primer/único elemento encontrado.')">Verificar</button>
+<div class="q-result" id="q19-r"></div>
+</div>
+
+<div class="q-block" id="q20">
+<div class="q-num">PREGUNTA 20 DE 50</div>
+<div class="q-text">¿Cómo se registra correctamente un event listener para <code>click</code> en el elemento con id "btn"?</div>
+<div class="q-options">
+<label><input type="radio" name="q20" value="a"> Solo: <code>document.getElementById("btn").onclick = handleClick;</code></label>
+<label><input type="radio" name="q20" value="b"> Solo: <code>document.getElementById("btn").addEventListener("click", handleClick);</code></label>
+<label><input type="radio" name="q20" value="c"> Ambas opciones son válidas</label>
+<label><input type="radio" name="q20" value="d"> Solo la opción a; addEventListener es obsoleto</label>
+</div>
+<button class="q-submit" onclick="check('q20','c','Ambas son formas válidas. addEventListener es la recomendada (permite múltiples listeners para el mismo evento). Asignar .onclick directamente también funciona pero solo admite un listener a la vez.')">Verificar</button>
+<div class="q-result" id="q20-r"></div>
+</div>
+
+<hr class="section-divider">
+<div class="section-title">🟨 Fetch API</div>
+
+<div class="q-block" id="q21">
+<div class="q-num">PREGUNTA 21 DE 50</div>
+<div class="q-text">¿Cuándo la Promise de <code>fetch()</code> es rechazada?</div>
+<div class="q-options">
+<label><input type="radio" name="q21" value="a"> Cuando el servidor retorna un código 404</label>
+<label><input type="radio" name="q21" value="b"> Cuando el servidor retorna un código 500</label>
+<label><input type="radio" name="q21" value="c"> Solo ante errores de red (ej. sin conexión), no por códigos HTTP</label>
+<label><input type="radio" name="q21" value="d"> Siempre que el status no sea exactamente 200</label>
+</div>
+<button class="q-submit" onclick="check('q21','c','Fetch rechaza la Promise solo ante errores de red (pérdida de conexión, DNS, etc.). Cualquier respuesta HTTP —incluso 404 o 500— resulta en una Promise resuelta (fulfilled). Por eso siempre verificar response.ok.')">Verificar</button>
+<div class="q-result" id="q21-r"></div>
+</div>
+
+<div class="q-block" id="q22">
+<div class="q-num">PREGUNTA 22 DE 50</div>
+<div class="q-text">Para enviar un objeto como JSON en un POST con Fetch, ¿qué se debe hacer?</div>
+<div class="q-options">
+<label><input type="radio" name="q22" value="a"> Pasar el objeto directamente en body: <code>body: miObjeto</code></label>
+<label><input type="radio" name="q22" value="b"> Convertirlo con <code>JSON.stringify()</code> y establecer el header <code>Content-Type: application/json</code></label>
+<label><input type="radio" name="q22" value="c"> Usar <code>response.json()</code> para enviarlo</label>
+<label><input type="radio" name="q22" value="d"> Fetch no puede enviar JSON, solo FormData</label>
+</div>
+<button class="q-submit" onclick="check('q22','b','Se debe serializar el objeto con JSON.stringify() y declarar Content-Type: application/json para que el servidor sepa cómo interpretar el body. Igual que en el proyecto: body: JSON.stringify(persona).')">Verificar</button>
+<div class="q-result" id="q22-r"></div>
+</div>
+
+<div class="q-block" id="q23">
+<div class="q-num">PREGUNTA 23 DE 50</div>
+<div class="q-text">¿Qué retorna <code>response.json()</code>?</div>
+<div class="q-options">
+<label><input type="radio" name="q23" value="a"> Un string JSON</label>
+<label><input type="radio" name="q23" value="b"> Una Promise que resuelve a un objeto JS parseado del body</label>
+<label><input type="radio" name="q23" value="c"> El objeto JS directamente (de forma síncrona)</label>
+<label><input type="radio" name="q23" value="d"> El Response object con el body ya parseado</label>
+</div>
+<button class="q-submit" onclick="check('q23','b','response.json() retorna una Promise. Por eso se usa: const data = await response.json(). El body se lee de forma asíncrona y solo se puede leer una vez.')">Verificar</button>
+<div class="q-result" id="q23-r"></div>
+</div>
+
+<div class="q-block" id="q24">
+<div class="q-num">PREGUNTA 24 DE 50</div>
+<div class="q-text">¿Qué indica <code>response.ok</code> en la Fetch API?</div>
+<div class="q-options">
+<label><input type="radio" name="q24" value="a"> Que la petición fue cancelada exitosamente</label>
+<label><input type="radio" name="q24" value="b"> Que el status HTTP está en el rango 200-299</label>
+<label><input type="radio" name="q24" value="c"> Que el servidor aceptó la conexión CORS</label>
+<label><input type="radio" name="q24" value="d"> Que el body fue leído exitosamente</label>
+</div>
+<button class="q-submit" onclick="check('q24','b','response.ok es un boolean true cuando el status HTTP está entre 200 y 299 (éxito). Es la forma recomendada de verificar si la petición tuvo éxito antes de procesar el body.')">Verificar</button>
+<div class="q-result" id="q24-r"></div>
+</div>
+
+<div class="q-block" id="q25">
+<div class="q-num">PREGUNTA 25 DE 50</div>
+<div class="q-text">Para ejecutar múltiples fetches <strong>en paralelo</strong> y esperar a que todos terminen, se usa:</div>
+<div class="q-options">
+<label><input type="radio" name="q25" value="a"> Anidar múltiples .then() uno dentro del otro</label>
+<label><input type="radio" name="q25" value="b"> <code>Promise.all(arrayDePromesas)</code></label>
+<label><input type="radio" name="q25" value="c"> Múltiples <code>await</code> seguidos en un async function</label>
+<label><input type="radio" name="q25" value="d"> <code>fetch.parallel(urls)</code></label>
+</div>
+<button class="q-submit" onclick="check('q25','b','Promise.all() recibe un arreglo de Promises y retorna una Promise que resuelve cuando TODAS terminan. Múltiples await seguidos ejecutan secuencialmente (uno espera al otro), no en paralelo.')">Verificar</button>
+<div class="q-result" id="q25-r"></div>
+</div>
+
+<div class="q-block" id="q26">
+<div class="q-num">PREGUNTA 26 DE 50</div>
+<div class="q-text">¿Cómo se cancela una petición fetch en curso?</div>
+<div class="q-options">
+<label><input type="radio" name="q26" value="a"> Llamando <code>fetch.cancel()</code></label>
+<label><input type="radio" name="q26" value="b"> Usando <code>AbortController</code>, pasando <code>signal: controller.signal</code> en las opciones, luego llamando <code>controller.abort()</code></label>
+<label><input type="radio" name="q26" value="c"> No es posible cancelar una petición fetch</label>
+<label><input type="radio" name="q26" value="d"> Usando <code>response.cancel()</code></label>
+</div>
+<button class="q-submit" onclick="check('q26','b','Se crea un AbortController, se pasa su signal en las opciones del fetch, y al llamar controller.abort() la petición se cancela y la Promise se rechaza con un AbortError.')">Verificar</button>
+<div class="q-result" id="q26-r"></div>
+</div>
+
+<div class="q-block" id="q27">
+<div class="q-num">PREGUNTA 27 DE 50</div>
+<div class="q-text">En el proyecto PersonasFetchCrud, para hacer un GET de todas las personas se construye el request como:</div>
+<div class="q-options">
+<label><input type="radio" name="q27" value="a"> <code>new Request(backend + '/personas', {method: 'POST'})</code></label>
+<label><input type="radio" name="q27" value="b"> <code>new Request(backend + '/personas', {method: 'GET', headers: {}})</code></label>
+<label><input type="radio" name="q27" value="c"> <code>fetch(backend + '/personas').json()</code> directamente</label>
+<label><input type="radio" name="q27" value="d"> <code>XMLHttpRequest(backend + '/personas')</code></label>
+</div>
+<button class="q-submit" onclick="check('q27','b','Según el código del proyecto: const request = new Request(backend + \'/personas\', {method: \'GET\', headers: {}}); luego const response = await fetch(request);')">Verificar</button>
+<div class="q-result" id="q27-r"></div>
+</div>
+
+<div class="q-block" id="q28">
+<div class="q-num">PREGUNTA 28 DE 50</div>
+<div class="q-text">¿Cuál de estos NO es un método válido para leer el body de un Response?</div>
+<div class="q-options">
+<label><input type="radio" name="q28" value="a"> <code>response.json()</code></label>
+<label><input type="radio" name="q28" value="b"> <code>response.text()</code></label>
+<label><input type="radio" name="q28" value="c"> <code>response.blob()</code></label>
+<label><input type="radio" name="q28" value="d"> <code>response.html()</code></label>
+</div>
+<button class="q-submit" onclick="check('q28','d','Los métodos válidos son: json(), text(), formData(), blob(), arrayBuffer(). No existe response.html(). Además, el body solo se puede leer una vez (es un stream).')">Verificar</button>
+<div class="q-result" id="q28-r"></div>
+</div>
+
+<div class="q-block" id="q29">
+<div class="q-num">PREGUNTA 29 DE 50</div>
+<div class="q-text">¿Qué ventaja principal tiene Axios sobre Fetch nativo?</div>
+<div class="q-options">
+<label><input type="radio" name="q29" value="a"> Axios es más seguro criptográficamente</label>
+<label><input type="radio" name="q29" value="b"> Axios convierte JSON automáticamente, tiene timeout nativo y rechaza la Promise en errores HTTP</label>
+<label><input type="radio" name="q29" value="c"> Axios funciona sin conexión a internet</label>
+<label><input type="radio" name="q29" value="d"> Axios es parte del estándar HTML5</label>
+</div>
+<button class="q-submit" onclick="check('q29','b','Axios: conversión JSON automática, timeout nativo, cancela requests más fácil, rechaza Promise en 4xx/5xx, funciona en Node.js sin configuración extra. Fetch requiere manejar todo eso manualmente.')">Verificar</button>
+<div class="q-result" id="q29-r"></div>
+</div>
+
+<div class="q-block" id="q30">
+<div class="q-num">PREGUNTA 30 DE 50</div>
+<div class="q-text">¿Qué es CORS en el contexto de Fetch?</div>
+<div class="q-options">
+<label><input type="radio" name="q30" value="a"> Un método de encriptación de datos en tránsito</label>
+<label><input type="radio" name="q30" value="b"> Un mecanismo para permitir peticiones desde un origen diferente al del servidor</label>
+<label><input type="radio" name="q30" value="c"> Un protocolo alternativo a HTTP</label>
+<label><input type="radio" name="q30" value="d"> Una librería de terceros para manejar errores de red</label>
+</div>
+<button class="q-submit" onclick="check('q30','b','Por seguridad, Fetch solo permite cargar datos del mismo servidor por defecto. CORS (Cross-Origin Resource Sharing) es el mecanismo que permite al servidor autorizar peticiones desde otros dominios.')">Verificar</button>
+<div class="q-result" id="q30-r"></div>
+</div>
+
+<hr class="section-divider">
+<div class="section-title">🟥 REST</div>
+
+<div class="q-block" id="q31">
+<div class="q-num">PREGUNTA 31 DE 50</div>
+<div class="q-text">REST significa:</div>
+<div class="q-options">
+<label><input type="radio" name="q31" value="a"> Remote Execution of Server Tasks</label>
+<label><input type="radio" name="q31" value="b"> REpresentational State Transfer</label>
+<label><input type="radio" name="q31" value="c"> Resource-Enabled Service Technology</label>
+<label><input type="radio" name="q31" value="d"> Reactive Event-Driven State Transition</label>
+</div>
+<button class="q-submit" onclick="check('q31','b','REST = REpresentational State Transfer. Transferencia de una representación del estado de un recurso.')">Verificar</button>
+<div class="q-result" id="q31-r"></div>
+</div>
+
+<div class="q-block" id="q32">
+<div class="q-num">PREGUNTA 32 DE 50</div>
+<div class="q-text">En REST, un "recurso" puede ser:</div>
+<div class="q-options">
+<label><input type="radio" name="q32" value="a"> Solo archivos HTML</label>
+<label><input type="radio" name="q32" value="b"> Un objeto (OOP), un registro de base de datos, una imagen, etc.</label>
+<label><input type="radio" name="q32" value="c"> Solo datos en formato XML</label>
+<label><input type="radio" name="q32" value="d"> Solo clases de Java en el servidor</label>
+</div>
+<button class="q-submit" onclick="check('q32','b','Un recurso en REST puede ser cualquier cosa: un objeto, un registro de DB, una imagen, un documento. Se accede a él mediante una URL y su estado se transfiere como representación (JSON, XML, etc.).')">Verificar</button>
+<div class="q-result" id="q32-r"></div>
+</div>
+
+<div class="q-block" id="q33">
+<div class="q-num">PREGUNTA 33 DE 50</div>
+<div class="q-text">¿Cuál método HTTP se usa para <strong>crear</strong> un nuevo recurso?</div>
+<div class="q-options">
+<label><input type="radio" name="q33" value="a"> GET</label>
+<label><input type="radio" name="q33" value="b"> PUT</label>
+<label><input type="radio" name="q33" value="c"> POST</label>
+<label><input type="radio" name="q33" value="d"> PATCH</label>
+</div>
+<button class="q-submit" onclick="check('q33','c','CRUD → HTTP: Create=POST, Read=GET, Update=PUT, Delete=DELETE. PATCH actualiza parcialmente (no reemplaza el recurso completo como PUT).')">Verificar</button>
+<div class="q-result" id="q33-r"></div>
+</div>
+
+<div class="q-block" id="q34">
+<div class="q-num">PREGUNTA 34 DE 50</div>
+<div class="q-text">Al implementar un servicio RESTful con Spring, el procesador identifica qué operación ejecutar basándose en:</div>
+<div class="q-options">
+<label><input type="radio" name="q34" value="a"> Solo el cuerpo (body) de la petición</label>
+<label><input type="radio" name="q34" value="b"> El URI y el método HTTP de la petición</label>
+<label><input type="radio" name="q34" value="c"> Solo el header Accept</label>
+<label><input type="radio" name="q34" value="d"> El parámetro action en la URL</label>
+</div>
+<button class="q-submit" onclick="check('q34','b','Spring RESTful identifica el servicio y el método a invocar según el URI (dirección del recurso) y el método HTTP (GET, POST, PUT, DELETE). Esos dos juntos determinan la operación.')">Verificar</button>
+<div class="q-result" id="q34-r"></div>
+</div>
+
+<div class="q-block" id="q35">
+<div class="q-num">PREGUNTA 35 DE 50</div>
+<div class="q-text">¿Qué header HTTP indica el formato de los datos que se envían en el body?</div>
+<div class="q-options">
+<label><input type="radio" name="q35" value="a"> <code>Accept</code></label>
+<label><input type="radio" name="q35" value="b"> <code>Content-Type</code></label>
+<label><input type="radio" name="q35" value="c"> <code>Authorization</code></label>
+<label><input type="radio" name="q35" value="d"> <code>Content-Length</code></label>
+</div>
+<button class="q-submit" onclick="check('q35','b','Content-Type indica el formato del body que SE ENVÍA (ej: application/json). Accept indica el formato que SE QUIERE RECIBIR en la respuesta. Spring usa Content-Type para deserializar.')">Verificar</button>
+<div class="q-result" id="q35-r"></div>
+</div>
+
+<div class="q-block" id="q36">
+<div class="q-num">PREGUNTA 36 DE 50</div>
+<div class="q-text">¿Qué código HTTP retorna típicamente un servicio REST al eliminar exitosamente un recurso?</div>
+<div class="q-options">
+<label><input type="radio" name="q36" value="a"> 200 OK</label>
+<label><input type="radio" name="q36" value="b"> 201 Created</label>
+<label><input type="radio" name="q36" value="c"> 204 No Content</label>
+<label><input type="radio" name="q36" value="d"> 302 Found</label>
+</div>
+<button class="q-submit" onclick="check('q36','c','DELETE exitoso típicamente retorna 204 No Content (éxito pero sin body de respuesta). Aunque también puede usarse 200 si se retorna información del recurso eliminado.')">Verificar</button>
+<div class="q-result" id="q36-r"></div>
+</div>
+
+<div class="q-block" id="q37">
+<div class="q-num">PREGUNTA 37 DE 50</div>
+<div class="q-text">Una aplicación web moderna con arquitectura REST provee:</div>
+<div class="q-options">
+<label><input type="radio" name="q37" value="a"> Solo páginas HTML completas para cada acción del usuario</label>
+<label><input type="radio" name="q37" value="b"> Páginas (Views) para el browser, más una API de servicios que retorna datos JSON consumidos por JS</label>
+<label><input type="radio" name="q37" value="c"> Solo una API sin ninguna vista HTML</label>
+<label><input type="radio" name="q37" value="d"> Solo datos binarios sin formato definido</label>
+</div>
+<button class="q-submit" onclick="check('q37','b','Una app web moderna provee: páginas (views/presentation) recibidas por el browser, Y una API RESTful que retorna datos (JSON) consumidos por el código JS del cliente para actualizar el DOM.')">Verificar</button>
+<div class="q-result" id="q37-r"></div>
+</div>
+
+<div class="q-block" id="q38">
+<div class="q-num">PREGUNTA 38 DE 50</div>
+<div class="q-text">En REST, si se solicita un recurso que no existe, el código HTTP correcto es:</div>
+<div class="q-options">
+<label><input type="radio" name="q38" value="a"> 200 OK con body vacío</label>
+<label><input type="radio" name="q38" value="b"> 500 Internal Server Error</label>
+<label><input type="radio" name="q38" value="c"> 404 Not Found</label>
+<label><input type="radio" name="q38" value="d"> 301 Moved Permanently</label>
+</div>
+<button class="q-submit" onclick="check('q38','c','404 Not Found es el código semántico correcto cuando el recurso solicitado no existe. Spring mapea excepciones de tipo NotFound al status HTTP 404 automáticamente.')">Verificar</button>
+<div class="q-result" id="q38-r"></div>
+</div>
+
+<div class="q-block" id="q39">
+<div class="q-num">PREGUNTA 39 DE 50</div>
+<div class="q-text">Para que Spring convierta el body JSON de una petición a un objeto Java, el procesador usa:</div>
+<div class="q-options">
+<label><input type="radio" name="q39" value="a"> El header <code>Accept</code> de la petición</label>
+<label><input type="radio" name="q39" value="b"> El header <code>Content-Type</code> de la petición</label>
+<label><input type="radio" name="q39" value="c"> El parámetro <code>format</code> en la URL</label>
+<label><input type="radio" name="q39" value="d"> Spring siempre convierte todo a XML primero</label>
+</div>
+<button class="q-submit" onclick="check('q39','b','Spring usa el Content-Type de la petición para saber en qué formato viene el body y deserializarlo al tipo Java esperado (ej: application/json → Jackson convierte JSON a POJO).')">Verificar</button>
+<div class="q-result" id="q39-r"></div>
+</div>
+
+<div class="q-block" id="q40">
+<div class="q-num">PREGUNTA 40 DE 50</div>
+<div class="q-text">En una URL RESTful como <code>/personas/42</code> con método GET, ¿qué representa el <code>42</code>?</div>
+<div class="q-options">
+<label><input type="radio" name="q40" value="a"> El número total de personas en la base de datos</label>
+<label><input type="radio" name="q40" value="b"> El identificador del recurso específico a recuperar</label>
+<label><input type="radio" name="q40" value="c"> El número de versión de la API</label>
+<label><input type="radio" name="q40" value="d"> Un parámetro de paginación (página 42)</label>
+</div>
+<button class="q-submit" onclick="check('q40','b','En REST, /recurso/{id} es el patrón para acceder a un recurso específico. /personas/42 con GET retorna la persona cuyo id es 42. Es el patrón de path variable.')">Verificar</button>
+<div class="q-result" id="q40-r"></div>
+</div>
+
+<hr class="section-divider">
+<div class="section-title">🟪 React</div>
+
+<div class="q-block" id="q41">
+<div class="q-num">PREGUNTA 41 DE 50</div>
+<div class="q-text">¿Cómo React sabe que debe re-renderizar un componente?</div>
+<div class="q-options">
+<label><input type="radio" name="q41" value="a"> Revisa el DOM completo cada segundo</label>
+<label><input type="radio" name="q41" value="b"> Detecta cambios en el state (via setState o el setter de useState)</label>
+<label><input type="radio" name="q41" value="c"> El usuario lo solicita manualmente con una función especial</label>
+<label><input type="radio" name="q41" value="d"> React re-renderiza todos los componentes en cada evento del usuario</label>
+</div>
+<button class="q-submit" onclick="check('q41','b','React detecta cambios en el state para decidir cuándo re-renderizar. Por eso NUNCA se debe mutar el state directamente; siempre usar setState() o el setter del useState para que React sea notificado.')">Verificar</button>
+<div class="q-result" id="q41-r"></div>
+</div>
+
+<div class="q-block" id="q42">
+<div class="q-num">PREGUNTA 42 DE 50</div>
+<div class="q-text">¿Cuál es la diferencia entre <code>state</code> y <code>props</code> en React?</div>
+<div class="q-options">
+<label><input type="radio" name="q42" value="a"> Son lo mismo, solo tienen nombres diferentes</label>
+<label><input type="radio" name="q42" value="b"> State es lectura/escritura y privado del componente; props es solo lectura y viene del padre</label>
+<label><input type="radio" name="q42" value="c"> Props es lectura/escritura; state es solo lectura</label>
+<label><input type="radio" name="q42" value="d"> State viene del servidor; props del usuario</label>
+</div>
+<button class="q-submit" onclick="check('q42','b','State: read-write, privado, controlado por el propio componente. Props: read-only, pasado por el componente padre. Los hijos NO pueden modificar sus props; deben notificar al padre via callbacks.')">Verificar</button>
+<div class="q-result" id="q42-r"></div>
+</div>
+
+<div class="q-block" id="q43">
+<div class="q-num">PREGUNTA 43 DE 50</div>
+<div class="q-text">¿Cuál es la forma correcta de manejar un evento click en JSX?</div>
+<div class="q-options">
+<label><input type="radio" name="q43" value="a"> <code>onclick="handleClick()"</code></label>
+<label><input type="radio" name="q43" value="b"> <code>onClick={handleClick}</code></label>
+<label><input type="radio" name="q43" value="c"> <code>on-click={handleClick}</code></label>
+<label><input type="radio" name="q43" value="d"> <code>click={handleClick}</code></label>
+</div>
+<button class="q-submit" onclick="check('q43','b','En JSX los eventos usan camelCase: onClick, onChange, onSubmit, etc. Se pasa la referencia de la función entre llaves {}, no como string. onclick con minúscula es HTML, no JSX.')">Verificar</button>
+<div class="q-result" id="q43-r"></div>
+</div>
+
+<div class="q-block" id="q44">
+<div class="q-num">PREGUNTA 44 DE 50</div>
+<div class="q-text">En un componente <strong>controlado</strong> de React, ¿dónde vive el valor actual del input?</div>
+<div class="q-options">
+<label><input type="radio" name="q44" value="a"> En el DOM del browser directamente</label>
+<label><input type="radio" name="q44" value="b"> En el state de React</label>
+<label><input type="radio" name="q44" value="c"> En una variable global de JavaScript</label>
+<label><input type="radio" name="q44" value="d"> En un archivo de configuración externo</label>
+</div>
+<button class="q-submit" onclick="check('q44','b','En un controlled component, React es la única fuente de verdad. El input siempre refleja el state. Cada tecla actualiza el state y React re-renderiza el input con el nuevo valor.')">Verificar</button>
+<div class="q-result" id="q44-r"></div>
+</div>
+
+<div class="q-block" id="q45">
+<div class="q-num">PREGUNTA 45 DE 50</div>
+<div class="q-text">¿Para qué sirve la Context API de React?</div>
+<div class="q-options">
+<label><input type="radio" name="q45" value="a"> Para conectar React con una base de datos directamente</label>
+<label><input type="radio" name="q45" value="b"> Para evitar el prop drilling, permitiendo compartir datos sin pasar props manualmente por cada nivel</label>
+<label><input type="radio" name="q45" value="c"> Para hacer peticiones HTTP sin necesidad de Fetch</label>
+<label><input type="radio" name="q45" value="d"> Para renderizar componentes en el servidor (SSR)</label>
+</div>
+<button class="q-submit" onclick="check('q45','b','Context API evita el prop drilling: permite compartir datos (state, funciones) a través del árbol de componentes sin pasar props manualmente por cada nivel intermedio que no los necesita.')">Verificar</button>
+<div class="q-result" id="q45-r"></div>
+</div>
+
+<div class="q-block" id="q46">
+<div class="q-num">PREGUNTA 46 DE 50</div>
+<div class="q-text">Para consumir un Context en un componente funcional, ¿qué hook se utiliza?</div>
+<div class="q-options">
+<label><input type="radio" name="q46" value="a"> <code>useEffect</code></label>
+<label><input type="radio" name="q46" value="b"> <code>useRef</code></label>
+<label><input type="radio" name="q46" value="c"> <code>useContext</code></label>
+<label><input type="radio" name="q46" value="d"> <code>useReducer</code></label>
+</div>
+<button class="q-submit" onclick="check('q46','c','useContext(MiContexto) retorna el valor actual del contexto. Es la alternativa moderna al componente Consumer para leer contextos en componentes funcionales.')">Verificar</button>
+<div class="q-result" id="q46-r"></div>
+</div>
+
+<div class="q-block" id="q47">
+<div class="q-num">PREGUNTA 47 DE 50</div>
+<div class="q-text">En React Router v7, ¿cuál componente reemplaza al antiguo <code>&lt;Switch&gt;</code> de v5?</div>
+<div class="q-options">
+<label><input type="radio" name="q47" value="a"> <code>&lt;Router&gt;</code></label>
+<label><input type="radio" name="q47" value="b"> <code>&lt;Routes&gt;</code></label>
+<label><input type="radio" name="q47" value="c"> <code>&lt;Paths&gt;</code></label>
+<label><input type="radio" name="q47" value="d"> <code>&lt;NavGroup&gt;</code></label>
+</div>
+<button class="q-submit" onclick="check('q47','b','Routes es el reemplazo de Switch en React Router v5/v6+. Soporta rutas relativas, rutas anidadas y layouts. Se combina con Route path y element.')">Verificar</button>
+<div class="q-result" id="q47-r"></div>
+</div>
+
+<div class="q-block" id="q48">
+<div class="q-num">PREGUNTA 48 DE 50</div>
+<div class="q-text">¿Cómo se define una ruta 404 (página no encontrada) en React Router v7?</div>
+<div class="q-options">
+<label><input type="radio" name="q48" value="a"> <code>&lt;Route path="404" element={&lt;NotFound /&gt;} /&gt;</code></label>
+<label><input type="radio" name="q48" value="b"> <code>&lt;Route path="*" element={&lt;NotFound /&gt;} /&gt;</code></label>
+<label><input type="radio" name="q48" value="c"> <code>&lt;Route default element={&lt;NotFound /&gt;} /&gt;</code></label>
+<label><input type="radio" name="q48" value="d"> <code>&lt;Route notFound element={&lt;NotFound /&gt;} /&gt;</code></label>
+</div>
+<button class="q-submit" onclick="check('q48','b','El path=&quot;*&quot; (asterisco/comodín) coincide con cualquier ruta no definida anteriormente. Debe colocarse al final del bloque de Routes para que no capture rutas válidas.')">Verificar</button>
+<div class="q-result" id="q48-r"></div>
+</div>
+
+<div class="q-block" id="q49">
+<div class="q-num">PREGUNTA 49 DE 50</div>
+<div class="q-text">JSX se compila a:</div>
+<div class="q-options">
+<label><input type="radio" name="q49" value="a"> HTML puro que el browser interpreta directamente</label>
+<label><input type="radio" name="q49" value="b"> Llamadas a <code>React.createElement()</code></label>
+<label><input type="radio" name="q49" value="c"> Código CSS con variables de componente</label>
+<label><input type="radio" name="q49" value="d"> Templates de Angular</label>
+</div>
+<button class="q-submit" onclick="check('q49','b','JSX es azúcar sintáctico. &lt;div className=&quot;x&quot;&gt;Hola&lt;/div&gt; se compila a React.createElement(\'div\', {className: \'x\'}, \'Hola\'). El browser no entiende JSX directamente; requiere un transpilador como Babel.')">Verificar</button>
+<div class="q-result" id="q49-r"></div>
+</div>
+
+<div class="q-block" id="q50">
+<div class="q-num">PREGUNTA 50 DE 50</div>
+<div class="q-text">¿Cuál es la ventaja principal de un componente <strong>no controlado</strong> en React sobre uno controlado?</div>
+<div class="q-options">
+<label><input type="radio" name="q50" value="a"> Permite validación en tiempo real más fácilmente</label>
+<label><input type="radio" name="q50" value="b"> Menos re-renders y código más simple para formularios básicos</label>
+<label><input type="radio" name="q50" value="c"> Tiene acceso inmediato al valor del input en cada tecla</label>
+<label><input type="radio" name="q50" value="d"> Es la única forma válida de manejar archivos subidos</label>
+</div>
+<button class="q-submit" onclick="check('q50','b','Los componentes no controlados son más simples: sin state variables por campo, sin re-renders por cada tecla. Ideales para formularios simples donde no se necesita acceso en tiempo real al valor.')">Verificar</button>
+<div class="q-result" id="q50-r"></div>
+</div>
+
+</div><!-- fin quiz tab -->
+</div><!-- fin container -->
+
+<script>
+var answers = {};
+var correct = {};
+var total50 = 50;
+
+function check(qId, rightAns, explanation) {
+  var selected = document.querySelector('input[name="' + qId + '"]:checked');
+  if (!selected) { alert('Seleccioná una opción primero.'); return; }
+  if (answers[qId] !== undefined) return;
+  var val = selected.value;
+  answers[qId] = val;
+  correct[qId] = (val === rightAns);
+  var block = document.getElementById(qId);
+  var resEl = document.getElementById(qId + '-r');
+  document.querySelectorAll('input[name="' + qId + '"]').forEach(function(o) { o.disabled = true; });
+  document.querySelector('#' + qId + ' .q-submit').disabled = true;
+  if (val === rightAns) {
+    block.classList.add('answered-ok');
+    resEl.className = 'q-result correct-msg';
+    resEl.textContent = '✓ Correcto. ' + explanation;
+  } else {
+    block.classList.add('answered-wrong');
+    var rightLabel = '';
+    document.querySelectorAll('input[name="' + qId + '"]').forEach(function(o) {
+      if (o.value === rightAns) rightLabel = o.parentElement.textContent.trim();
+    });
+    resEl.className = 'q-result wrong-msg';
+    resEl.textContent = '✗ Incorrecto. Correcta: ' + rightLabel + '. ' + explanation;
+  }
+  updateScore();
+}
+
+function updateScore() {
+  var responded = Object.keys(answers).length;
+  var hits = Object.values(correct).filter(Boolean).length;
+  document.getElementById('score-num').textContent = hits + ' / ' + responded;
+  var pct = responded > 0 ? Math.round((hits / responded) * 100) : 0;
+  document.getElementById('score-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+  var msg = responded < total50 ? 'Respondidas: ' + responded + ' de ' + total50 :
+            pct >= 90 ? '🎉 Excelente dominio del material' :
+            pct >= 70 ? '👍 Buen nivel, repasá los errores' :
+            '📚 Conviene reforzar los temas fallados';
+  document.getElementById('score-msg').textContent = msg;
+  var fill = document.getElementById('progress-fill');
+  fill.style.background = pct >= 90 ? '#27ae60' : pct >= 70 ? '#f39c12' : '#e74c3c';
+}
+
+function showTab(id, btn) {
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
