@@ -1332,13 +1332,356 @@ function App() {
 <div class="q-result" id="q50-r"></div>
 </div>
 
+
+<hr class="section-divider">
+<div class="section-title">🔁 Preguntas adicionales (estilo quiz del curso)</div>
+
+<div class="section-title" style="font-size:13px;color:#555;margin-top:-0.5rem;margin-bottom:1rem">🟦 JavaScript extra</div>
+
+<div class="q-block" id="q51">
+<div class="q-num">PREGUNTA 51 DE 75</div>
+<div class="q-text">El método <code>addEventListener</code> recibe como primer parámetro un String que identifica el evento y como segundo parámetro:</div>
+<div class="q-options">
+<label><input type="radio" name="q51" value="a"> Una instrucción</label>
+<label><input type="radio" name="q51" value="b"> Ninguna</label>
+<label><input type="radio" name="q51" value="c"> Varias instrucciones</label>
+<label><input type="radio" name="q51" value="d"> Una función</label>
+</div>
+<button class="q-submit" onclick="check('q51','d','addEventListener recibe el nombre del evento (String) y como segundo parámetro una función (EventListener) que será ejecutada cuando ocurra el evento.')">Verificar</button>
+<div class="q-result" id="q51-r"></div>
+</div>
+
+<div class="q-block" id="q52">
+<div class="q-num">PREGUNTA 52 DE 75</div>
+<div class="q-text">El fragmento Javascript: <code>a={p:'v1'}; b=a; b.p='v2'; console.log(a.p);</code></div>
+<div class="q-options">
+<label><input type="radio" name="q52" value="a"> Imprime v1</label>
+<label><input type="radio" name="q52" value="b"> Ninguna</label>
+<label><input type="radio" name="q52" value="c"> Imprime v2</label>
+<label><input type="radio" name="q52" value="d"> Genera un error</label>
+</div>
+<button class="q-submit" onclick="check('q52','c','Los objetos se asignan por referencia. b=a hace que b apunte al mismo objeto que a. Al modificar b.p, se modifica el objeto compartido, por eso a.p también es v2.')">Verificar</button>
+<div class="q-result" id="q52-r"></div>
+</div>
+
+<div class="q-block" id="q53">
+<div class="q-num">PREGUNTA 53 DE 75</div>
+<div class="q-text">El fragmento Javascript: <code>a={p:'v'}; b={p:'v'}; console.log(a==b);</code></div>
+<div class="q-options">
+<label><input type="radio" name="q53" value="a"> Imprime false</label>
+<label><input type="radio" name="q53" value="b"> Imprime true</label>
+<label><input type="radio" name="q53" value="c"> Genera un error</label>
+<label><input type="radio" name="q53" value="d"> Ninguna</label>
+</div>
+<button class="q-submit" onclick="check('q53','a','Aunque los dos objetos tienen el mismo contenido, son objetos distintos en memoria. En JS, == entre objetos compara referencias, no contenido. a y b apuntan a lugares distintos → false.')">Verificar</button>
+<div class="q-result" id="q53-r"></div>
+</div>
+
+<div class="q-block" id="q54">
+<div class="q-num">PREGUNTA 54 DE 75</div>
+<div class="q-text">La siguiente NO es una palabra reservada del lenguaje Javascript:</div>
+<div class="q-options">
+<label><input type="radio" name="q54" value="a"> var</label>
+<label><input type="radio" name="q54" value="b"> document</label>
+<label><input type="radio" name="q54" value="c"> new</label>
+<label><input type="radio" name="q54" value="d"> function</label>
+</div>
+<button class="q-submit" onclick="check('q54','b','document NO es una palabra reservada del lenguaje JS; es un objeto provisto por el browser (parte del DOM/BOM). var, new y function SÍ son palabras reservadas del lenguaje.')">Verificar</button>
+<div class="q-result" id="q54-r"></div>
+</div>
+
+<div class="q-block" id="q55">
+<div class="q-num">PREGUNTA 55 DE 75</div>
+<div class="q-text">La siguiente expresión Javascript genera un error:</div>
+<div class="q-options">
+<label><input type="radio" name="q55" value="a"> <code>f=function(x,y){return x+y;}</code></label>
+<label><input type="radio" name="q55" value="b"> <code>f=(x,y)=>{return x+y;}</code></label>
+<label><input type="radio" name="q55" value="c"> <code>function f(x,y){return x+y;}</code></label>
+<label><input type="radio" name="q55" value="d"> Ninguna</label>
+</div>
+<button class="q-submit" onclick="check('q55','d','Ninguna genera error. Las tres son sintaxis válidas de JS: expresión de función, arrow function y declaración de función. Todas son correctas y equivalentes en funcionalidad.')">Verificar</button>
+<div class="q-result" id="q55-r"></div>
+</div>
+
+<hr class="section-divider">
+<div class="section-title" style="font-size:13px;color:#555;margin-bottom:1rem">🟩 DOM extra</div>
+
+<div class="q-block" id="q56">
+<div class="q-num">PREGUNTA 56 DE 75</div>
+<div class="q-text">La invocación <code>document.createTextNode("hola");</code></div>
+<div class="q-options">
+<label><input type="radio" name="q56" value="a"> Ninguna (solo crea el nodo, no lo agrega)</label>
+<label><input type="radio" name="q56" value="b"> Agrega el texto indicado a la página</label>
+<label><input type="radio" name="q56" value="c"> Agrega el texto indicado a document</label>
+<label><input type="radio" name="q56" value="d"> Genera un error</label>
+</div>
+<button class="q-submit" onclick="check('q56','a','createTextNode solo CREA el nodo de texto en memoria pero no lo agrega al DOM. Para que aparezca en la página se debe llamar appendChild(nodo) sobre algún elemento padre.')">Verificar</button>
+<div class="q-result" id="q56-r"></div>
+</div>
+
+<div class="q-block" id="q57">
+<div class="q-num">PREGUNTA 57 DE 75</div>
+<div class="q-text">¿Qué retorna <code>document.createElement("li")</code>?</div>
+<div class="q-options">
+<label><input type="radio" name="q57" value="a"> Un objeto</label>
+<label><input type="radio" name="q57" value="b"> Ninguna</label>
+<label><input type="radio" name="q57" value="c"> Una etiqueta HTML como string</label>
+<label><input type="radio" name="q57" value="d"> Un String</label>
+</div>
+<button class="q-submit" onclick="check('q57','a','createElement retorna un objeto (un nodo del DOM de tipo HTMLElement). No retorna un string HTML, sino el objeto JS que representa ese elemento y que luego se puede manipular.')">Verificar</button>
+<div class="q-result" id="q57-r"></div>
+</div>
+
+<div class="q-block" id="q58">
+<div class="q-num">PREGUNTA 58 DE 75</div>
+<div class="q-text">Para que un texto creado con <code>createTextNode</code> aparezca en la página, se debe:</div>
+<div class="q-options">
+<label><input type="radio" name="q58" value="a"> Asignarlo a <code>document.body.text</code></label>
+<label><input type="radio" name="q58" value="b"> Llamar <code>appendChild</code> sobre un elemento padre para agregarlo al árbol DOM</label>
+<label><input type="radio" name="q58" value="c"> Pasarlo como parámetro a <code>document.write()</code></label>
+<label><input type="radio" name="q58" value="d"> No es necesario hacer nada más</label>
+</div>
+<button class="q-submit" onclick="check('q58','b','Crear un nodo con createTextNode lo deja flotando en memoria. Para que sea visible, debe insertarse en el árbol DOM con appendChild(nodo) o insertBefore() sobre un elemento padre.')">Verificar</button>
+<div class="q-result" id="q58-r"></div>
+</div>
+
+<div class="q-block" id="q59">
+<div class="q-num">PREGUNTA 59 DE 75</div>
+<div class="q-text">La interfaz <code>EventTarget</code> define el método:</div>
+<div class="q-options">
+<label><input type="radio" name="q59" value="a"> <code>createElement()</code></label>
+<label><input type="radio" name="q59" value="b"> <code>querySelector()</code></label>
+<label><input type="radio" name="q59" value="c"> <code>addEventListener()</code></label>
+<label><input type="radio" name="q59" value="d"> <code>appendChild()</code></label>
+</div>
+<button class="q-submit" onclick="check('q59','c','addEventListener() es el método central de la interfaz EventTarget. Node hereda de EventTarget, por lo que todos los nodos del DOM pueden registrar listeners con este método.')">Verificar</button>
+<div class="q-result" id="q59-r"></div>
+</div>
+
+<div class="q-block" id="q60">
+<div class="q-num">PREGUNTA 60 DE 75</div>
+<div class="q-text">¿Cuál de las siguientes afirmaciones sobre <code>innerHTML</code> es correcta?</div>
+<div class="q-options">
+<label><input type="radio" name="q60" value="a"> Solo permite leer el contenido HTML, no escribirlo</label>
+<label><input type="radio" name="q60" value="b"> Permite tanto leer como escribir el HTML interior de un elemento</label>
+<label><input type="radio" name="q60" value="c"> Solo funciona en el elemento <code>document</code>, no en elementos individuales</label>
+<label><input type="radio" name="q60" value="d"> Es un método, no una propiedad</label>
+</div>
+<button class="q-submit" onclick="check('q60','b','innerHTML es una propiedad de lectura/escritura disponible en document y en elementos individuales. Al asignarle un string HTML, el browser lo parsea y construye los nodos correspondientes.')">Verificar</button>
+<div class="q-result" id="q60-r"></div>
+</div>
+
+<hr class="section-divider">
+<div class="section-title" style="font-size:13px;color:#555;margin-bottom:1rem">🟨 Fetch extra</div>
+
+<div class="q-block" id="q61">
+<div class="q-num">PREGUNTA 61 DE 75</div>
+<div class="q-text">El método <code>response.json()</code> retorna:</div>
+<div class="q-options">
+<label><input type="radio" name="q61" value="a"> Un objeto Javascript</label>
+<label><input type="radio" name="q61" value="b"> Un objeto JSON</label>
+<label><input type="radio" name="q61" value="c"> Ninguna</label>
+<label><input type="radio" name="q61" value="d"> Un String</label>
+</div>
+<button class="q-submit" onclick="check('q61','a','response.json() parsea el body del response y retorna una Promise que resuelve a un objeto Javascript. JSON es solo el formato de texto en tránsito; una vez parseado es un objeto JS normal.')">Verificar</button>
+<div class="q-result" id="q61-r"></div>
+</div>
+
+<div class="q-block" id="q62">
+<div class="q-num">PREGUNTA 62 DE 75</div>
+<div class="q-text">El fragmento <code>fetch(url).then(r => r.json()).then(data => console.log(data))</code> imprime:</div>
+<div class="q-options">
+<label><input type="radio" name="q62" value="a"> Un string con el JSON crudo</label>
+<label><input type="radio" name="q62" value="b"> El objeto Javascript parseado del body del response</label>
+<label><input type="radio" name="q62" value="c"> El objeto Response completo</label>
+<label><input type="radio" name="q62" value="d"> Genera un error porque falta el catch</label>
+</div>
+<button class="q-submit" onclick="check('q62','b','El primer .then recibe el Response y llama a .json() que parsea el body. El segundo .then recibe ya el objeto JS resultante. El catch no es obligatorio para que funcione, solo para manejo de errores.')">Verificar</button>
+<div class="q-result" id="q62-r"></div>
+</div>
+
+<div class="q-block" id="q63">
+<div class="q-num">PREGUNTA 63 DE 75</div>
+<div class="q-text">Si el servidor retorna un status 404, la Promise de <code>fetch()</code>:</div>
+<div class="q-options">
+<label><input type="radio" name="q63" value="a"> Es rechazada (rejected)</label>
+<label><input type="radio" name="q63" value="b"> Es resuelta (fulfilled) con response.ok = false</label>
+<label><input type="radio" name="q63" value="c"> Es resuelta con response.ok = true</label>
+<label><input type="radio" name="q63" value="d"> No se ejecuta el .then()</label>
+</div>
+<button class="q-submit" onclick="check('q63','b','Fetch resuelve la Promise para CUALQUIER respuesta HTTP, incluyendo 404. response.ok será false (porque 404 no está en el rango 200-299). Solo rechaza ante errores de red.')">Verificar</button>
+<div class="q-result" id="q63-r"></div>
+</div>
+
+<div class="q-block" id="q64">
+<div class="q-num">PREGUNTA 64 DE 75</div>
+<div class="q-text">Para enviar datos con método POST usando Fetch, el body debe ser:</div>
+<div class="q-options">
+<label><input type="radio" name="q64" value="a"> El objeto JS directamente: <code>body: miObjeto</code></label>
+<label><input type="radio" name="q64" value="b"> Un String JSON: <code>body: JSON.stringify(miObjeto)</code></label>
+<label><input type="radio" name="q64" value="c"> Un arreglo de pares clave-valor</label>
+<label><input type="radio" name="q64" value="d"> No se puede enviar body en POST con Fetch</label>
+</div>
+<button class="q-submit" onclick="check('q64','b','El body de fetch debe ser un String (o FormData/Blob). Para enviar JSON hay que serializar con JSON.stringify() y declarar el header Content-Type: application/json.')">Verificar</button>
+<div class="q-result" id="q64-r"></div>
+</div>
+
+<div class="q-block" id="q65">
+<div class="q-num">PREGUNTA 65 DE 75</div>
+<div class="q-text">El fragmento: <code>const r = await fetch(url); if(!r.ok) throw Error(r.statusText);</code></div>
+<div class="q-options">
+<label><input type="radio" name="q65" value="a"> Genera siempre un error porque fetch no se puede usar con await</label>
+<label><input type="radio" name="q65" value="b"> Es la forma correcta de manejar errores HTTP en Fetch con async/await</label>
+<label><input type="radio" name="q65" value="c"> Solo detecta errores de red, no errores HTTP</label>
+<label><input type="radio" name="q65" value="d"> Ninguna</label>
+</div>
+<button class="q-submit" onclick="check('q65','b','Es exactamente el patrón recomendado: usar await para esperar el Response, luego verificar r.ok para detectar errores HTTP (4xx/5xx) y lanzar un Error manualmente para que lo capture el catch.')">Verificar</button>
+<div class="q-result" id="q65-r"></div>
+</div>
+
+<hr class="section-divider">
+<div class="section-title" style="font-size:13px;color:#555;margin-bottom:1rem">🟥 REST extra</div>
+
+<div class="q-block" id="q66">
+<div class="q-num">PREGUNTA 66 DE 75</div>
+<div class="q-text">En un servicio RESTful, el método HTTP que se usa para <strong>actualizar completamente</strong> un recurso existente es:</div>
+<div class="q-options">
+<label><input type="radio" name="q66" value="a"> POST</label>
+<label><input type="radio" name="q66" value="b"> GET</label>
+<label><input type="radio" name="q66" value="c"> PUT</label>
+<label><input type="radio" name="q66" value="d"> DELETE</label>
+</div>
+<button class="q-submit" onclick="check('q66','c','PUT actualiza (reemplaza completamente) un recurso existente en la URL indicada. POST crea. GET lee. DELETE elimina. PATCH actualiza parcialmente.')">Verificar</button>
+<div class="q-result" id="q66-r"></div>
+</div>
+
+<div class="q-block" id="q67">
+<div class="q-num">PREGUNTA 67 DE 75</div>
+<div class="q-text">En REST, la representación de un recurso puede ser:</div>
+<div class="q-options">
+<label><input type="radio" name="q67" value="a"> Solo JSON</label>
+<label><input type="radio" name="q67" value="b"> Solo XML</label>
+<label><input type="radio" name="q67" value="c"> JSON, XML u otros formatos según el header Accept</label>
+<label><input type="radio" name="q67" value="d"> Solo texto plano</label>
+</div>
+<button class="q-submit" onclick="check('q67','c','REST no impone un formato de representación. El cliente puede indicar el formato deseado con el header Accept (ej: application/json, application/xml). El servidor responde según lo que soporte.')">Verificar</button>
+<div class="q-result" id="q67-r"></div>
+</div>
+
+<div class="q-block" id="q68">
+<div class="q-num">PREGUNTA 68 DE 75</div>
+<div class="q-text">Spring convierte automáticamente el objeto Java de respuesta a JSON usando el header:</div>
+<div class="q-options">
+<label><input type="radio" name="q68" value="a"> <code>Content-Type</code> de la respuesta</label>
+<label><input type="radio" name="q68" value="b"> <code>Accept</code> de la petición del cliente</label>
+<label><input type="radio" name="q68" value="c"> <code>Authorization</code></label>
+<label><input type="radio" name="q68" value="d"> <code>X-Format</code></label>
+</div>
+<button class="q-submit" onclick="check('q68','b','Spring usa el header Accept de la petición del cliente para determinar en qué formato serializar la respuesta (ej: Accept: application/json → Spring retorna JSON).')">Verificar</button>
+<div class="q-result" id="q68-r"></div>
+</div>
+
+<div class="q-block" id="q69">
+<div class="q-num">PREGUNTA 69 DE 75</div>
+<div class="q-text">En una API RESTful, <code>GET /personas</code> y <code>GET /personas/5</code> son:</div>
+<div class="q-options">
+<label><input type="radio" name="q69" value="a"> La misma operación con distinto parámetro</label>
+<label><input type="radio" name="q69" value="b"> Operaciones distintas: listar todos vs. obtener uno por id</label>
+<label><input type="radio" name="q69" value="c"> Ambas generan error porque GET no acepta parámetros en la URL</label>
+<label><input type="radio" name="q69" value="d"> Ninguna</label>
+</div>
+<button class="q-submit" onclick="check('q69','b','Son endpoints distintos: GET /personas retorna la colección completa; GET /personas/5 retorna el recurso específico con id=5. Ambos usan GET pero mapean a métodos distintos en el servidor.')">Verificar</button>
+<div class="q-result" id="q69-r"></div>
+</div>
+
+<div class="q-block" id="q70">
+<div class="q-num">PREGUNTA 70 DE 75</div>
+<div class="q-text">Si ocurre una excepción "recurso no encontrado" en el servidor Spring, el status HTTP que debe retornar es:</div>
+<div class="q-options">
+<label><input type="radio" name="q70" value="a"> 200</label>
+<label><input type="radio" name="q70" value="b"> 201</label>
+<label><input type="radio" name="q70" value="c"> 500</label>
+<label><input type="radio" name="q70" value="d"> 404</label>
+</div>
+<button class="q-submit" onclick="check('q70','d','Cuando el recurso solicitado no existe, la excepción se mapea al status 404 Not Found. Spring permite mapear excepciones a códigos HTTP específicos. El 500 es para errores internos no manejados.')">Verificar</button>
+<div class="q-result" id="q70-r"></div>
+</div>
+
+<hr class="section-divider">
+<div class="section-title" style="font-size:13px;color:#555;margin-bottom:1rem">🟪 React extra</div>
+
+<div class="q-block" id="q71">
+<div class="q-num">PREGUNTA 71 DE 75</div>
+<div class="q-text">En React, ¿qué ocurre si se modifica el state directamente sin usar <code>setState</code> o el setter de <code>useState</code>?</div>
+<div class="q-options">
+<label><input type="radio" name="q71" value="a"> El componente se re-renderiza igual</label>
+<label><input type="radio" name="q71" value="b"> El componente NO se re-renderiza; React no detecta el cambio</label>
+<label><input type="radio" name="q71" value="c"> Genera un error en tiempo de ejecución</label>
+<label><input type="radio" name="q71" value="d"> Solo se re-renderiza el componente hijo</label>
+</div>
+<button class="q-submit" onclick="check('q71','b','React detecta cambios solo cuando se usa setState() (clase) o el setter de useState (funcional). Mutar el state directamente no notifica a React y el componente no se re-renderiza.')">Verificar</button>
+<div class="q-result" id="q71-r"></div>
+</div>
+
+<div class="q-block" id="q72">
+<div class="q-num">PREGUNTA 72 DE 75</div>
+<div class="q-text">En React, el componente <code>&lt;BrowserRouter&gt;</code>:</div>
+<div class="q-options">
+<label><input type="radio" name="q72" value="a"> Define una ruta individual con su componente asociado</label>
+<label><input type="radio" name="q72" value="b"> Envuelve la aplicación y provee el contexto de routing usando la HTML5 History API</label>
+<label><input type="radio" name="q72" value="c"> Reemplaza al componente <code>&lt;Switch&gt;</code> de v5</label>
+<label><input type="radio" name="q72" value="d"> Solo funciona en modo framework de React Router</label>
+</div>
+<button class="q-submit" onclick="check('q72','b','BrowserRouter envuelve toda la app y provee el contexto de routing. Usa internamente la HTML5 History API para mantener el historial de navegación. Routes es el reemplazo de Switch.')">Verificar</button>
+<div class="q-result" id="q72-r"></div>
+</div>
+
+<div class="q-block" id="q73">
+<div class="q-num">PREGUNTA 73 DE 75</div>
+<div class="q-text">En el Context API de React, el componente <code>Provider</code>:</div>
+<div class="q-options">
+<label><input type="radio" name="q73" value="a"> Consume el contexto en un componente hijo</label>
+<label><input type="radio" name="q73" value="b"> Envuelve el árbol de componentes y expone los datos del contexto a sus descendientes mediante la prop <code>value</code></label>
+<label><input type="radio" name="q73" value="c"> Crea el contexto con <code>createContext()</code></label>
+<label><input type="radio" name="q73" value="d"> Solo puede usarse en el componente raíz App</label>
+</div>
+<button class="q-submit" onclick="check('q73','b','El Provider envuelve la parte del árbol donde se quiere compartir el contexto y expone los datos a través de su prop value. Cualquier descendiente puede consumirlos con useContext().')">Verificar</button>
+<div class="q-result" id="q73-r"></div>
+</div>
+
+<div class="q-block" id="q74">
+<div class="q-num">PREGUNTA 74 DE 75</div>
+<div class="q-text">En JSX, para mostrar el valor de una variable <code>nombre</code> dentro del HTML se usa:</div>
+<div class="q-options">
+<label><input type="radio" name="q74" value="a"> <code>&lt;p&gt;{{nombre}}&lt;/p&gt;</code></label>
+<label><input type="radio" name="q74" value="b"> <code>&lt;p&gt;${nombre}&lt;/p&gt;</code></label>
+<label><input type="radio" name="q74" value="c"> <code>&lt;p&gt;{nombre}&lt;/p&gt;</code></label>
+<label><input type="radio" name="q74" value="d"> <code>&lt;p&gt;"nombre"&lt;/p&gt;</code></label>
+</div>
+<button class="q-submit" onclick="check('q74','c','En JSX se usan llaves simples {} para interpolar expresiones JavaScript dentro del HTML. El doble {{}} es de Angular/Vue. El $ es de template literals de JS pero no aplica en JSX.')">Verificar</button>
+<div class="q-result" id="q74-r"></div>
+</div>
+
+<div class="q-block" id="q75">
+<div class="q-num">PREGUNTA 75 DE 75</div>
+<div class="q-text">El <strong>prop drilling</strong> en React se refiere a:</div>
+<div class="q-options">
+<label><input type="radio" name="q75" value="a"> Perforar el DOM para acceder a nodos internos</label>
+<label><input type="radio" name="q75" value="b"> Pasar props a través de múltiples niveles de componentes intermedios que no los necesitan</label>
+<label><input type="radio" name="q75" value="c"> Duplicar el state en varios componentes</label>
+<label><input type="radio" name="q75" value="d"> Usar demasiados hooks en un componente</label>
+</div>
+<button class="q-submit" onclick="check('q75','b','Prop drilling ocurre cuando un dato debe pasarse de un componente ancestro a uno muy anidado, atravesando componentes intermedios que no usan esos props pero deben recibirlos y pasarlos. Context API lo resuelve.')">Verificar</button>
+<div class="q-result" id="q75-r"></div>
+</div>
+
 </div><!-- fin quiz tab -->
 </div><!-- fin container -->
 
 <script>
 var answers = {};
 var correct = {};
-var total50 = 50;
+var total50 = 75;
 
 function check(qId, rightAns, explanation) {
   var selected = document.querySelector('input[name="' + qId + '"]:checked');
